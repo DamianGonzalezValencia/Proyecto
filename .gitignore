@@ -1,0 +1,14 @@
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/storage/*.key
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+/vendor
