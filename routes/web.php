@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/index', function () {
-    return view('categorias.index');
-});
-//Route::resource('categorias', App\Http\Controller\CategoriasController::class)->middleware('auth');
+Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');
+Route::resource('marcas', App\Http\Controllers\MarcaController::class)->middleware('auth');
+//Route::resource('users')
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

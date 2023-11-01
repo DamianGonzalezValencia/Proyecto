@@ -1,26 +1,25 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} Categoria 
+    {{ __('Create') }} Marca
 @endsection
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Categoria</span>
+                        <span class="card-title">{{ __('Create') }} Marca</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('categorias.update', $categorias->id_cat) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('marcas.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('categorias.formupdate')
+                            @include('marcas.form')
 
                         </form>
                     </div>

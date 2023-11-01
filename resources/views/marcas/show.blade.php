@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $categorias->name ?? "{{ __('Show') Categoria" }}
+    {{ $marcas->name ?? "{{ __('Show') Marca" }}
 @endsection
 
 @section('content')
@@ -11,22 +11,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Categoria</span>
+                            <span class="card-title">{{ __('Show') }} Marca</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('categorias.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('marcas.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Id Cat:</strong>
-                            {{ $categorias->id_cat }}
+                            <strong>Id Mar:</strong>
+                            {{ $marcas->id_mar }}
                         </div>
                         <div class="form-group">
-                            <strong>Nombre Cat:</strong>
-                            {{ $categorias->nombre_cat }}
+                            <strong>Nombre Mar:</strong>
+                            {{ $marcas->nombre_mar }}
                         </div>
 
                     </div>
