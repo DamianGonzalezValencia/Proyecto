@@ -1,0 +1,14 @@
+
+  .colorbase{
+    color: white; /* Color predeterminado, puedes cambiarlo según tus preferencias */
+}
+
+  .colobase2:hover {
+    color: #0D6EFD; /* Cambia el color al pasar el cursor sobre el enlace */
+}
+
+/* Estilo para el enlace activo */
+  .navbar-nav .nav-item.active .nav-link {
+    color: #0D6EFD; /* Cambia el color cuando el enlace está activo */
+}
+

@@ -1,0 +1,87 @@
+
+-------- MOVIMIENTOS ----------
+
+
+--------- PRODUCTOS -----------
+
+
+--------- RELACION ENTRE PRODUCTOS Y RETIROS ---------
+*No se guardan los RETIROS
+*Cuando se borran productos, también se borra el registro de Movimientos asociado al producto eliminado.... pudiera ser una solución
+quitar la llave foránea de productos en movimientos y crear la variable propia de movimientos que también se llame productos. Algo así
+como lo del guardado de "Ingreso" y "retiro".
+
+*Como funcionalidad adicional para los retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
+poder elegir la cantidad a retirar del producto pero manteniendo como maxima cantidad a retirar, el stock disponible.
+
+*Por Ultimo poder almacenar el registro de cambios en la vista "productos.edit"
+
+
+--------------- CABOS SUELTOS ------------------
+*Hay que poner a prueba la paginacion de las vistas index. en especifico "productos.index" puede tener problemas
+
+*Al cerrar la pagina con un usuario logeado la pagina nunca cierra sesión.
+
+*Quitar el nombre "laravel" que está en la pestaña junto al fabicon
+------------------------------------------------
+
+estoy elaborando un proyecto web con laravel y php de un inventario datacenter, tengo funciones para crear categorias que tiene su propia tabla , marcas que también posee su propia tabla, y tengo una funcion para crear y retirar productos que usan 1 tabla llamada "productos". Por último poseo tambien una funcion de registros de movimientos que tiene su propia tabla "movimientos"  que se encarga de dejar registro de ingresos y retiros de productos. 
+Pero tengo un problema; mi tabla movimientos no guarda los retiros hechos, y además se borran los registros de ingreso cuando retiro un producto asociado anteriormente al ingreso, en mi tabla movimientos tengo una llave foránea relacionada a productos_id
+
+
+<main class="d-flex flex-nowrap">
+  <h1 class="visually-hidden">Sidebars examples</h1>
+
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Orders
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+          Products
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+          Customers
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>mdo</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+  </div>

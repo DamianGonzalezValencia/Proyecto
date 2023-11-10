@@ -12,38 +12,65 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
+    <style>
+        .logito{
+            width: 5%;
+            height: 10%;
+            margin: 0 auto;
+        }
+
+        .centrar{
+            text-align: center;
+            float: center;
+        }
+
+
+    </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
-    <div id="app">
+<body >
+    <div id="app" >
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+            <div class="container" >
+                <div class="logito">
+                    <a href="{{ url('/welcome') }}">
+                    <img src='./images/logo.png' alt='logo invertec' style="height:40px; text-align:center" >
+                    </a>
+                </div>
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     INVENTARIO INVERTEC
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ">
+
+                    @if (Auth::check())
+                    <!--<ul class="navbar-nav ">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('CATEGORIAS') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('MARCAS') }}</a>
                         </li>
-                    </ul>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('productos.index') }}">{{ __('PRODUCTOS') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('movimientos.index') }}">{{ __('MOVIMIENTOS') }}</a>
+                        </li>
+                    </ul>-->
+                    @endif
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto" style="">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('INGRESAR'))
-                                <li class="nav-item">
+                                <li class="nav-item" >
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
                                 </li>
                             @endif
@@ -54,8 +81,8 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown" style="font-size: 110%">
+                                <a style="text-transform: uppercase" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -71,15 +98,58 @@
                                     </form>
                                 </div>
                             </li>
+                            
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+    </div>
+        <main class="d-flex flex-nowrap responsive" style="height:1100px; ">
+        @if (Auth::check())
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark responsive" style="width: 21%; height:100%;" >
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">DATA CENTER</span>
+            </a>
+            <hr>
+            <ul id="colorbase2" class="nav nav-pills flex-column mb-auto" style="hover">
+            <li class="nav-item">
+                <a href="{{ url('/home') }}" class="nav-link text-white" name="colorbase" style="font-size:120%; margin-bottom:5%" aria-current="page">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                Home
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('movimientos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                Historial de Acciones
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('categorias.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                Categorias
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('marcas.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                Marcas
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('productos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                Productos
+                </a>
+            </li>
+            </ul>
+            <hr>
+        </div>
+        @endif
             @yield('content')
         </main>
-    </div>
+
 </body>
 </html>

@@ -1,0 +1,26 @@
+.botonsito {
+    display: inline-block;
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #c2c2c2; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Eliminar el borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+    text-decoration: none; /* Eliminar el subrayado del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  }
+
+  .navbar-nav .nav-link {
+    color: white; /* Color predeterminado, puedes cambiarlo según tus preferencias */
+}
+
+  .navbar-nav .nav-link:hover {
+    color: #0D6EFD; /* Cambia el color al pasar el cursor sobre el enlace */
+}
+
+/* Estilo para el enlace activo */
+  .navbar-nav .nav-item.active .nav-link {
+    color: #0D6EFD; /* Cambia el color cuando el enlace está activo */
+}
+

@@ -4,12 +4,12 @@
 
         <div class="form-group">
             {{ Form::label('nombre_cat', 'Nombre de la categoría') }}
-            {{ Form::text('nombre_cat', null, ['class' => 'form-control' . ($errors->has('nombre_cat') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Cat']) }}
+            {{ Form::text('nombre_cat', null, ['class' => 'form-control' . ($errors->has('nombre_cat') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Categoria']) }}
             {!! $errors->first('nombre_cat', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
-    <div class="box-footer mt20">
+    <div class="box-footer mt20" style="margin-top:2%">
         {{ Form::submit('Actualizar', ['class' => 'btn btn-primary']) }}
     </div>
 

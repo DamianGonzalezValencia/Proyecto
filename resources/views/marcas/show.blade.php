@@ -7,25 +7,23 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top:2%">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Marca</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('marcas.index') }}"> {{ __('Back') }}</a>
+                            <span class="card-title">{{ __('Ver') }} Marca</span>
+                            <a class="btn btn-primary" style="margin-left:20px"href="{{ route('marcas.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Id Mar:</strong>
+                            <strong>Id Marca:</strong>
                             {{ $marcas->id_mar }}
                         </div>
                         <div class="form-group">
-                            <strong>Nombre Mar:</strong>
+                            <strong>Nombre Marca:</strong>
                             {{ $marcas->nombre_mar }}
                         </div>
 

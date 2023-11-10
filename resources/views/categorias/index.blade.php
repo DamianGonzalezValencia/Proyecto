@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top:2%">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -39,7 +39,6 @@
 										<th>Id Categoria</th>
 										<th>Nombre de Categoria</th>
 
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,11 +51,11 @@
 
                                             <td>
                                                 <form action="{{ route('categorias.destroy',$paginacion->id_cat) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('categorias.show',$paginacion->id_cat) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('categorias.edit',$paginacion->id_cat) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('categorias.show',$paginacion->id_cat) }}"><i class="fa fa-fw fa-eye"></i> {{ __('VER DETALLES') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('categorias.edit',$paginacion->id_cat) }}"><i class="fa fa-fw fa-edit"></i> {{ __('EDITAR') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('ELIMINAR') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -39,7 +39,7 @@ class Categoria extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productos()
+    public function productos() //ÉSTA FUNCION ACÁ SE ENCARGA DE HACER EL TIPO DE RELACION 1 A MUCHOS ENTRE LA TABLA CATEGORIAS Y LA TABLA PRODUCTOS
     {
         return $this->hasMany('App\Models\Producto', 'categorias_id_cat', 'id_cat');
     }
