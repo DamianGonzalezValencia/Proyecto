@@ -17,11 +17,10 @@ return new class extends Migration
             $table->string('tipo_mov');
             $table->integer('cantidad_mov');
             $table->string('fecha_mov');
-            $table->bigInteger('productos_id_pro')->unsigned();
+            $table->string('nombre_mov');
             $table->bigInteger('users_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('productos_id_pro')->references('id_pro')->on('productos');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
 
         });

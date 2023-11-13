@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Categorias</title>
 @section('template_title')
     Categoria
 @endsection

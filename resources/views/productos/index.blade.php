@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Movimientos</title>
 @section('template_title')
     Producto
 @endsection

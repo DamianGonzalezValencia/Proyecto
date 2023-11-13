@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Marcas</title>
 @section('template_title')
     Marca
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Movimientos</title>
 @section('template_title')
     Movimiento
 @endsection
@@ -28,11 +28,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>N°</th>
+                                        <th style="width:3%;">N°</th>
                                         
-										<th style="width:14%">Id Movimiento</th>
-										<th>Tipo </th>
-                                        <th style="width:11%">Cantidad</th>
+										<th style="width:11%; text-align:center">Id Mov.</th>
+										<th style="width:14%">Tipo </th>
+                                        <th style="width:11%; text-align:center">Cantidad</th>
                                         <th style="width:11%">Fecha</th>
                                         <th>Producto</th>
                                         <th>Usuario</th>
@@ -43,16 +43,16 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $paginacion->id_mov }}</td>
+											<td style="text-align:center">{{ $paginacion->id_mov }}</td>
 											<td>{{ $paginacion->tipo_mov }}</td>
-                                            <td>{{ $paginacion->cantidad_mov }}</td>
+                                            <td style="text-align:center">{{ $paginacion->cantidad_mov }}</td>
                                             <td>{{ $paginacion->fecha_mov }}</td><!-- PUEDE QUE HAYA QUE SOLO QUITAR LA LETRA "S" -->
-                                            <td>{{ $paginacion->productos_id_pro }}</td>
+                                            <td>{{ $paginacion->nombre_mov }}</td>
                                             <td>{{ $paginacion->user->name }}</td>
 
                                             <td>
                                                 <form>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('movimientos.show', $paginacion->id_mov) }}"><i class="fa fa-fw fa-eye"></i> {{ __('VER DETALLES') }}</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('movimientos.show', $paginacion->id_mov)}}"><i class="fa fa-fw fa-eye"></i> {{ __('VER DETALLES') }}</a>
                                                     @csrf
                                                 </form>
                                             </td>

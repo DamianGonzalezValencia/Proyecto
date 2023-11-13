@@ -28,7 +28,7 @@
 
             .boton {
                 display: inline-block;
-                padding: 2.5% 6%; /* Ajusta el relleno (padding) según tus necesidades */
+                padding: 2% 6%; /* Ajusta el relleno (padding) según tus necesidades */
                 background-color: green; /* Color de fondo del botón */
                 color: #fff; /* Color del texto */
                 border: none; /* Borde del botón (puedes personalizarlo) */
@@ -71,7 +71,7 @@
 
             .boton2 {
                 display: inline-block;
-                padding: 2.5% 4%; /* Ajusta el relleno (padding) según tus necesidades */
+                padding: 2% 4%; /* Ajusta el relleno (padding) según tus necesidades */
                 background-color: green; /* Color de fondo del botón */
                 color: #fff; /* Color del texto */
                 border: none; /* Borde del botón (puedes personalizarlo) */

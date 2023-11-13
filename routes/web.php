@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/welcome');
 });
 
 Auth::routes();
@@ -23,7 +23,10 @@ Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->
 Route::resource('marcas', App\Http\Controllers\MarcaController::class)->middleware('auth');
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
+//Route::resource('modelos',App\Http\Controllers\ModeloController::class)-middleware('auth');
+Route::get('/movimientos/{id_mov}', 'MovimientoController@show');
+
 //Route::resource('users')
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

@@ -15,20 +15,21 @@ class Movimiento extends Model
 		'tipo_mov' => 'required',#Crear una validacion booleana entre "Ingreso" y "Retiro"
         'cantidad_mov' => 'required',
         'fecha_mov' => 'required',
-        'productos_id_pro' => 'required',
+        'nombre_mov' => 'required',
         'users_id' => 'required',
     ];
 
     protected $perPage = 20;
 
-    protected $fillable = ['id_mov','cantidad_mov','fecha_mov','productos_id_pro','users_id'];
+    protected $fillable = ['id_mov','cantidad_mov','fecha_mov','nombre_mov','users_id'];
 
     public function User(){
         return $this->belongsTo('App\Models\User','users_id','id');
     }
 
-    public function Producto(){
-        return $this->belongsTo('App\Models\Producto','productos_id_pro','id_pro');
+    public function Producto()
+    {
+        return $this->belongsTo(Producto::class, 'productos_id_pro', 'id_pro');
     }
 
 }

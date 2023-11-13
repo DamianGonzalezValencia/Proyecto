@@ -63,8 +63,9 @@ class MovimientoController extends Controller
     public function show($id_mov)
     {
         $movimientos = Movimiento::find($id_mov);
+        $productos = Producto::find($movimientos->producto_id_pro);
 
-        return view('movimientos.show', compact('movimientos'));
+        return view('movimientos.show', compact('movimientos', 'productos'));
     }
 
     /**

@@ -12,7 +12,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
@@ -127,6 +126,13 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('productos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                Productos
+                </a>
+            </li>
+            <hr>
+            <li>
                 <a href="{{ route('categorias.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
                 Categorias
@@ -138,12 +144,6 @@
                 Marcas
                 </a>
             </li>
-            <li>
-                <a href="{{ route('productos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
-                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                Productos
-                </a>
-            </li>
             </ul>
             <hr>
         </div>
@@ -153,3 +153,4 @@
 
 </body>
 </html>
+

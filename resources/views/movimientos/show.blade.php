@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Detalles Movimientos</title>
 @section('template_title')
     {{ $movimientos->name ?? "{{ __('Show') Movimientos" }}
 @endsection
@@ -24,19 +24,19 @@
                         </div>
                         <div class="form-group">
                             <strong>Producto:</strong>
-                            {{ $movimientos->producto->nombre_pro }}
+                            {{ $movimientos->nombre_mov }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $movimientos->producto->descripcion_pro }}
+                            {{ $movimientos->descripcion_pa_movimiento }}
                         </div>
                         <div class="form-group">
                             <strong>Categoria:</strong>
-                            {{ $movimientos->producto->categorias_id_cat }}
+                            {{ $movimientos->categoria_pa_movimiento }}
                         </div>
                         <div class="form-group">
                             <strong>Marca:</strong>
-                            {{ $movimientos->producto->marcas_id_mar }}
+                            {{ $movimientos->marca_pa_movimiento }}
                         </div>
                     </div>
                 </div>

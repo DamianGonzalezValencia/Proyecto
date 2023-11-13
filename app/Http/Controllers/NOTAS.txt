@@ -5,28 +5,61 @@
 --------- PRODUCTOS -----------
 
 
---------- RELACION ENTRE PRODUCTOS Y RETIROS ---------
-*No se guardan los RETIROS
-*Cuando se borran productos, también se borra el registro de Movimientos asociado al producto eliminado.... pudiera ser una solución
-quitar la llave foránea de productos en movimientos y crear la variable propia de movimientos que también se llame productos. Algo así
-como lo del guardado de "Ingreso" y "retiro".
-
+----------- RELACION ENTRE PRODUCTOS Y RETIROS ----------
 *Como funcionalidad adicional para los retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
 poder elegir la cantidad a retirar del producto pero manteniendo como maxima cantidad a retirar, el stock disponible.
 
-*Por Ultimo poder almacenar el registro de cambios en la vista "productos.edit"
+
+>>>>>>>>>>>>>*Por Ultimo poder almacenar el registro de cambios en la vista "productos.edit"<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
---------------- CABOS SUELTOS ------------------
+------------------ FALLOS PENDIENTES --------------------
 *Hay que poner a prueba la paginacion de las vistas index. en especifico "productos.index" puede tener problemas
-
 *Al cerrar la pagina con un usuario logeado la pagina nunca cierra sesión.
+*Estando en la vista de "ingresar" para iniciar sesion, no hay manera de volver a la vista "welcome", hay error
+*validar en controlador de marcas y categorias entradas vacias.
+*Error al seleccionar "Ver detalles" en la vista movimientos.(Hay que agregar 3 campos más a la base de datos de movimientos para poder usar ésos datos
+en el controlador de la vista "show") ó averiguar el uso del reciclado de codigo con blade para trar valores de ingreso de otra vista
+*la cantidad de retiro se pone en 0
 
-*Quitar el nombre "laravel" que está en la pestaña junto al fabicon
-------------------------------------------------
+-------------- FUNCIONALIDADES A INCORPORAR --------------------
+*Consultar con Luis la opción de incorporar una funcionalidad para carga masiva desde excel.
+*Otros requerimientos:
+- mostrar en casilla de informaciones stocks mas bajos
+- cantidad de productos en categoria
+- agregar campo "modelo"
 
-estoy elaborando un proyecto web con laravel y php de un inventario datacenter, tengo funciones para crear categorias que tiene su propia tabla , marcas que también posee su propia tabla, y tengo una funcion para crear y retirar productos que usan 1 tabla llamada "productos". Por último poseo tambien una funcion de registros de movimientos que tiene su propia tabla "movimientos"  que se encarga de dejar registro de ingresos y retiros de productos. 
-Pero tengo un problema; mi tabla movimientos no guarda los retiros hechos, y además se borran los registros de ingreso cuando retiro un producto asociado anteriormente al ingreso, en mi tabla movimientos tengo una llave foránea relacionada a productos_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------ CONSULTAS A CHATGPT ------------------
+chatgpt, tengo una vista "movimientos.show" que manejo desde mi controlador Movimiento. 
+en la vista muestro datos como descripcion, categoría y marca que son datos almacenados en mi tabla "productos".
+deseo poder mostrar éstos 3 datos en mi vista show de movimientos que no están en mi tabla movimientos
+
+
+
+
+
+
+
+
+
+
 
 
 <main class="d-flex flex-nowrap">
@@ -85,3 +118,4 @@ Pero tengo un problema; mi tabla movimientos no guarda los retiros hechos, y ade
       </ul>
     </div>
   </div>
+tazki consume api de buk
