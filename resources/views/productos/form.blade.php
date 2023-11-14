@@ -26,6 +26,12 @@
             {{ Form::select('marcas_id_mar', $marcas , $productos->marcas_id_mar, ['class' => 'form-control' . ($errors->has('marcas_id_mar') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione la marca del producto']) }}
             {!! $errors->first('marcas_id_mar', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <!--ACÁ VA LA CONDICIONAL QUE ESTÁ EN EL BORRADOR-->
+        <div class="form-group"><div style="margin-top:1%; "></div>
+            {{ Form::label('Modelo') }}<div style="margin-bottom:1%;"></div>
+            {{ Form::select('modelos_id_mod', $modelos , $productos->modelos_id_mod, ['class' => 'form-control' . ($errors->has('modelos_id_mod') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el modelo de la marca']) }}
+            {!! $errors->first('modelos_id_mod', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
     </div>
     <div class="box-footer mt20" style="margin-top:2%">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>

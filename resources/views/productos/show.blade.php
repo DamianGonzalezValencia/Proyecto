@@ -42,6 +42,10 @@
                             <strong>Marca:</strong>
                             {{ $productos->marca->nombre_mar }}
                         </div>
+                        <div class="form-group">
+                            <strong>Modelo:</strong>
+                            {{ $productos->modelo->nombre_mod }}
+                        </div>
                     </div>
                 </div>
             </div>

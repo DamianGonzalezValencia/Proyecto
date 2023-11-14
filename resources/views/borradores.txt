@@ -4,3 +4,25 @@
                 Modelos
                 </a>
             </li>-->
+
+
+{{-- Aquí debería estar tu código HTML anterior --}}
+
+<div class="form-group">
+    <label for="seleccion">Seleccionar</label>
+    <select id="seleccion" name="seleccion">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+    </select>
+</div>
+
+{{-- Condicional para mostrar el siguiente form group --}}
+@if (old('seleccion') == 'opcion1')
+    <div class="form-group">
+        <label for="campo_extra">Campo Extra para Opción 1</label>
+        <input type="text" id="campo_extra" name="campo_extra" class="form-control" value="{{ old('campo_extra') }}">
+    </div>
+@endif
+
+{{-- Aquí debería estar el resto de tu código HTML --}}
+

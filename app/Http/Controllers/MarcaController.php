@@ -101,8 +101,9 @@ class MarcaController extends Controller
             } else {
                 return redirect()->back()->with('error', 'No se pudo encontrar la categoría con el ID proporcionado.');
             }
-        }    }
-
+        }    
+    }
+    
     /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse

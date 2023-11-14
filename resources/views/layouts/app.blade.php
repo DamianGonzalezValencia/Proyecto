@@ -62,6 +62,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('movimientos.index') }}">{{ __('MOVIMIENTOS') }}</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('modelos.index') }}">{{ __('MODELOS') }}</a>
+                        </li>
                     </ul>-->
                     @endif
                     <!-- Right Side Of Navbar -->
@@ -142,6 +145,12 @@
                 <a href="{{ route('marcas.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
                 Marcas
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('modelos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                Modelos
                 </a>
             </li>
             </ul>

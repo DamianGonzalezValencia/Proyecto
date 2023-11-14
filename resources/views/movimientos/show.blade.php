@@ -28,15 +28,19 @@
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $movimientos->descripcion_pa_movimiento }}
+                            {{ $movimientos->descripcion_mov }}
                         </div>
                         <div class="form-group">
                             <strong>Categoria:</strong>
-                            {{ $movimientos->categoria_pa_movimiento }}
+                            {{ $movimientos->categorias_mov }}
                         </div>
                         <div class="form-group">
                             <strong>Marca:</strong>
-                            {{ $movimientos->marca_pa_movimiento }}
+                            {{ $movimientos->marcas_mov }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Modelo:</strong>
+                            {{ $movimientos->modelos_mov }}
                         </div>
                     </div>
                 </div>

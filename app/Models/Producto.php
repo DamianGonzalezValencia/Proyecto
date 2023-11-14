@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categoria;
+use App\Models\Marca;
+use App\Models\Modelo;
 
 class Producto extends Model
 {
@@ -18,11 +20,12 @@ class Producto extends Model
         'cantidad_pro' => 'required',
         'categorias_id_cat' => 'required',
         'marcas_id_mar' => 'required',
+        'modelos_id_mod' => '',
     ];
 
     protected $perPage = 20;
 
-    protected $fillable = ['id_pro','nombre_pro','descripcion_pro','cantidad_pro','categorias_id_cat','marcas_id_mar'];
+    protected $fillable = ['id_pro','nombre_pro','descripcion_pro','cantidad_pro','categorias_id_cat','marcas_id_mar', 'modelos_id_mod'];
 
     public function categoria(){
         return $this->belongsTo('App\Models\Categoria','categorias_id_cat','id_cat');
@@ -30,6 +33,10 @@ class Producto extends Model
 
     public function marca(){
         return $this->belongsTo('App\Models\Marca','marcas_id_mar','id_mar');
+    }
+
+    public function modelo(){
+        return $this->belongsTo('App\Models\Modelo','modelos_id_mod','id_mod');
     }
 
     public function movimiento(){

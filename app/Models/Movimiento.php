@@ -17,11 +17,15 @@ class Movimiento extends Model
         'fecha_mov' => 'required',
         'nombre_mov' => 'required',
         'users_id' => 'required',
+        'descripcion_mov' => 'required',
+        'categorias_mov' => 'required',
+        'marcas_mov' => 'required',
+        'modelos_mod' => 'required'
     ];
 
     protected $perPage = 20;
 
-    protected $fillable = ['id_mov','cantidad_mov','fecha_mov','nombre_mov','users_id'];
+    protected $fillable = ['id_mov','cantidad_mov','fecha_mov','nombre_mov','users_id', 'descripcion_mov', 'categorias_mov', 'marcas_mov', 'modelos_mod'];
 
     public function User(){
         return $this->belongsTo('App\Models\User','users_id','id');

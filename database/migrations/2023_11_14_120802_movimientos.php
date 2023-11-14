@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('fecha_mov');
             $table->string('nombre_mov');
             $table->bigInteger('users_id')->unsigned();
+            $table->string('descripcion_mov');
+            $table->string('categorias_mov');
+            $table->string('marcas_mov');
+            $table->string('modelos_mov');
             $table->timestamps();
 
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');

@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Producto;
 use App\Models\Movimiento;
+use App\Models\Modelo;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -21,7 +22,8 @@ class ProductoController extends Controller
         $productos = new Producto();
         $categorias= Categoria::pluck('nombre_cat','id_cat');
         $marcas= Marca::pluck('nombre_mar','id_mar');
-        return view('productos.create', compact('productos','categorias','marcas'));
+        $modelos= Modelo::pluck('nombre_mod','id_mod');
+        return view('productos.create', compact('productos','categorias','marcas','modelos'));
     }
 //------------------------------------------------------------
     public function store(Request $request){ //DEBO HACER LO MISMO EN EL STORE DE MOVIMIENTOS PERO SOLO CON "retiro"
@@ -30,7 +32,8 @@ class ProductoController extends Controller
             'descripcion_pro' => 'required',
             'cantidad_pro' => 'required|numeric',
             'categorias_id_cat' => 'required',
-            'marcas_id_mar' =>'required'
+            'marcas_id_mar' =>'required',
+            'modelos_id_mod' =>''
         ]);
 
         $fechaActual = date('d-m-y');
@@ -38,12 +41,23 @@ class ProductoController extends Controller
 
         if($productos){
             $nombre_pal_producto = $productos->nombre_pro;
+            $descripcion_pal_movimiento = $productos->descripcion_pro;
+
+            $categorias = Categoria::findOrFail($request->input('categorias_id_cat'));
+            $marcas = Marca::findOrFail($request->input('marcas_id_mar'));
+            $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
+
             $movimiento = new Movimiento();
             $movimiento->tipo_mov = 'INGRESO';
             $movimiento->cantidad_mov = $request->input('cantidad_pro');
             $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
             $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
             $movimiento->users_id = auth()->user()->id;
+            $movimiento->descripcion_mov = $descripcion_pal_movimiento;
+
+            $movimiento->categorias_mov = $categorias->nombre_cat;
+            $movimiento->marcas_mov = $marcas->nombre_mar;
+            $movimiento->modelos_mov = $modelos->nombre_mod;
             $movimiento->save();
 
             return redirect()->route('productos.index')->with("success",'Producto creado de manera exitosa.');
@@ -62,7 +76,8 @@ class ProductoController extends Controller
         $productos = Producto::find($id_pro);
         $categorias= Categoria::pluck('nombre_cat','id_cat');
         $marcas= Marca::pluck('nombre_mar','id_mar');
-        return view('productos.edit', compact('productos','categorias','marcas'));
+        $modelos= Modelo::pluck('nombre_mod','id_mod');
+        return view('productos.edit', compact('productos','categorias','marcas','modelos'));
     }
 //--------------------------------------------------------------
     public function update(Request $request, $id_pro)
@@ -72,7 +87,8 @@ class ProductoController extends Controller
                 'descripcion_pro' => 'required',
                 'cantidad_pro' => 'required|numeric',
                 'categorias_id_cat' => 'required',
-                'marcas_id_mar' =>'required'
+                'marcas_id_mar' =>'required',
+                'modelos_id_mod' =>''
             ]);
 
             $productos = Producto::find($id_pro);
@@ -82,21 +98,28 @@ class ProductoController extends Controller
             $cantidad_pro = $request->input('cantidad_pro');
             $categorias_id_cat = $request->input('categorias_id_cat');
             $marcas_id_mar = $request->input('marcas_id_mar');
+            $modelos_id_mod = $request->input('modelos_id_mod');
                 // Busca la categoría por su ID
             $fechaActual = date('d-m-y');
             if ($productos) {
                 $nombre_pal_producto = $productos->nombre_pro;
+                $descripcion_pal_movimiento = $productos->descripcion_pro;
+                $categorias_pal_movimiento = $productos->categorias_id_cat;
+                $marcas_pal_movimiento = $productos->marcas_id_mar;
+                $modelos_pal_movimiento = $productos->modelos_id_mod;
 
                 $productos->nombre_pro = $nombre_pro;
                 $productos->descripcion_pro = $descripcion_pro;
                 $productos->cantidad_pro = $cantidad_pro;
                 $productos->categorias_id_cat = $categorias_id_cat;
                 $productos->marcas_id_mar = $marcas_id_mar;
+                $productos->modelos_id_mod = $modelos_id_mod;
                 $productos->save();
 
                 $productos = Producto::find($id_pro)->all();
                 $categorias = Categoria::all();
                 $marcas = Marca::all();
+                $modelos = Modelo::all();
 
                 if($productos){
 
@@ -106,11 +129,16 @@ class ProductoController extends Controller
                     $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
                     $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
                     $movimiento->users_id = auth()->user()->id;
+                    $movimiento->descripcion_mov = $descripcion_pal_movimiento;
+                    $movimiento->categorias_mov = $categorias_pal_movimiento;
+                    $movimiento->marcas_mov = $marcas_pal_movimiento;
+                    $movimiento->modelos_mov = $modelos_pal_movimiento;
+
                     $movimiento->save();
                 }
 
                     
-                return view('productos.index', compact('productos', 'categorias', 'marcas'))->with('success', 'Producto actualizado correctamente.');
+                return view('productos.index', compact('productos', 'categorias', 'marcas', 'modelos'))->with('success', 'Producto actualizado correctamente.');
             } else {
                 return redirect()->back()->with('error', 'No se pudo encontrar el Producto con el ID proporcionado.');
             }
@@ -126,6 +154,11 @@ class ProductoController extends Controller
 
             if ($productos){
                 $nombre_pal_producto = $productos->nombre_pro;
+                $descripcion_pal_movimiento = $productos->descripcion_pro;
+                $categorias_pal_movimiento = $productos->categorias_id_cat;
+                $marcas_pal_movimiento = $productos->marcas_id_mar;
+                $modelos_pal_movimiento = $productos->modelos_id_mod;
+
                 $productos->delete();
                 $movimiento = new Movimiento();
                 $movimiento->tipo_mov = 'RETIRO';
@@ -133,6 +166,10 @@ class ProductoController extends Controller
                 $movimiento->fecha_mov = $fechaActual;
                 $movimiento->nombre_mov = $nombre_pal_producto;
                 $movimiento->users_id = auth()->user()->id;
+                $movimiento->descripcion_mov = $descripcion_pal_movimiento;
+                $movimiento->categorias_mov = $categorias_pal_movimiento;
+                $movimiento->marcas_mov = $marcas_pal_movimiento;
+                $movimiento->modelos_mov = $modelos_pal_movimiento;
                 $movimiento->save();
 
                 return redirect()->route('productos.index')

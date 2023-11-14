@@ -21,10 +21,11 @@ Auth::routes();
 
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');
 Route::resource('marcas', App\Http\Controllers\MarcaController::class)->middleware('auth');
+Route::resource('modelos', App\Http\Controllers\ModeloController::class)->middleware('auth');
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
-//Route::resource('modelos',App\Http\Controllers\ModeloController::class)-middleware('auth');
-Route::get('/movimientos/{id_mov}', 'MovimientoController@show');
+
+
 
 //Route::resource('users')
 

@@ -19,10 +19,12 @@ return new class extends Migration
             $table->integer('cantidad_pro');
             $table->bigInteger('categorias_id_cat')->unsigned();
             $table->bigInteger('marcas_id_mar')->unsigned();
+            $table->bigInteger('modelos_id_mod')->unsigned();
             $table->timestamps();
 
             $table->foreign('categorias_id_cat')->references('id_cat')->on('categorias')->onDelete('cascade');
             $table->foreign('marcas_id_mar')->references('id_mar')->on('marcas')->onDelete('cascade');
+            $table->foreign('modelos_id_mod')->references('id_mod')->on('modelos')->onDelete('cascade');
         });
     }
 
