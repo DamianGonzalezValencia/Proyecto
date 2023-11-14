@@ -48,10 +48,11 @@
                                 <tbody>
                                     @foreach ($productos as $paginacion)
                                         <tr>                                        
-                                            @php 
-                                                $i = 0; 
+                                            @php
+                                                $i = 0;
                                             @endphp
-                                            <td>{{ ++$i }}</td>
+                                            
+                                            <td>{{++$i}}</td>
                                             
 											<td>{{ $paginacion->id_pro }}</td>
 											<td>{{ $paginacion->nombre_pro }}</td>
@@ -79,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                
+                {!! $productos->links() !!}
             </div>
         </div>
     </div>

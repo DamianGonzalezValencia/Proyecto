@@ -91,22 +91,17 @@ class ProductoController extends Controller
                 'modelos_id_mod' =>''
             ]);
 
-            $productos = Producto::find($id_pro);
-
             $nombre_pro = $request->input('nombre_pro'); //Obtención de los valores requeridos
             $descripcion_pro = $request->input('descripcion_pro');
             $cantidad_pro = $request->input('cantidad_pro');
             $categorias_id_cat = $request->input('categorias_id_cat');
             $marcas_id_mar = $request->input('marcas_id_mar');
             $modelos_id_mod = $request->input('modelos_id_mod');
+
+            $productos = Producto::find($id_pro);
                 // Busca la categoría por su ID
             $fechaActual = date('d-m-y');
             if ($productos) {
-                $nombre_pal_producto = $productos->nombre_pro;
-                $descripcion_pal_movimiento = $productos->descripcion_pro;
-                $categorias_pal_movimiento = $productos->categorias_id_cat;
-                $marcas_pal_movimiento = $productos->marcas_id_mar;
-                $modelos_pal_movimiento = $productos->modelos_id_mod;
 
                 $productos->nombre_pro = $nombre_pro;
                 $productos->descripcion_pro = $descripcion_pro;
@@ -116,29 +111,33 @@ class ProductoController extends Controller
                 $productos->modelos_id_mod = $modelos_id_mod;
                 $productos->save();
 
-                $productos = Producto::find($id_pro)->all();
-                $categorias = Categoria::all();
-                $marcas = Marca::all();
-                $modelos = Modelo::all();
+                $productos = Producto::with('categoria', 'marca', 'modelo')->find($id_pro);
 
-                if($productos){
+                if($productos && $productos->categoria && $productos->marca && $productos->modelo){
+                    $nombre_pal_producto = $productos->nombre_pro;
+                    $descripcion_pal_movimiento = $productos->descripcion_pro;
+
+                    $categoriaNombre = $productos->categoria->nombre_cat ?? null;
+                    $marcaNombre = $productos->marca->nombre_mar ?? null;
+                    $modeloNombre = $productos->modelo->nombre_mod ?? null;
 
                     $movimiento = new Movimiento();
                     $movimiento->tipo_mov = 'MODIFICACION';
                     $movimiento->cantidad_mov = $request->input('cantidad_pro');
-                    $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
-                    $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
+                    $movimiento->fecha_mov = date('d-m-y');
+                    $movimiento->nombre_mov = $productos->nombre_pro;
                     $movimiento->users_id = auth()->user()->id;
-                    $movimiento->descripcion_mov = $descripcion_pal_movimiento;
-                    $movimiento->categorias_mov = $categorias_pal_movimiento;
-                    $movimiento->marcas_mov = $marcas_pal_movimiento;
-                    $movimiento->modelos_mov = $modelos_pal_movimiento;
+                    $movimiento->descripcion_mov = $productos->descripcion_pro;
+                    
+                    $movimiento->categorias_mov = $categoriaNombre;
+                    $movimiento->marcas_mov = $marcaNombre;
+                    $movimiento->modelos_mov = $modeloNombre;
 
                     $movimiento->save();
+                    return view('productos.index', compact('productos'))->with('success', 'Producto actualizado correctamente.');
+                }else{
+                    return view('productos.index', compact('productos'))->with('error', 'No se pudo encontrar relaciones');
                 }
-
-                    
-                return view('productos.index', compact('productos', 'categorias', 'marcas', 'modelos'))->with('success', 'Producto actualizado correctamente.');
             } else {
                 return redirect()->back()->with('error', 'No se pudo encontrar el Producto con el ID proporcionado.');
             }
@@ -146,31 +145,28 @@ class ProductoController extends Controller
     }
 //----------------------------------------------------------------
     public function destroy($id_pro)
-    {   
         {
             $request = request();
             $fechaActual = date('d-m-y');
-            $productos = Producto::find($id_pro);
+            $productos = Producto::with('categoria', 'marca', 'modelo')->find($id_pro);
 
             if ($productos){
                 $nombre_pal_producto = $productos->nombre_pro;
                 $descripcion_pal_movimiento = $productos->descripcion_pro;
-                $categorias_pal_movimiento = $productos->categorias_id_cat;
-                $marcas_pal_movimiento = $productos->marcas_id_mar;
-                $modelos_pal_movimiento = $productos->modelos_id_mod;
 
                 $productos->delete();
-                $movimiento = new Movimiento();
-                $movimiento->tipo_mov = 'RETIRO';
-                $movimiento->cantidad_mov = $request->has('cantidad_pro');
-                $movimiento->fecha_mov = $fechaActual;
-                $movimiento->nombre_mov = $nombre_pal_producto;
-                $movimiento->users_id = auth()->user()->id;
-                $movimiento->descripcion_mov = $descripcion_pal_movimiento;
-                $movimiento->categorias_mov = $categorias_pal_movimiento;
-                $movimiento->marcas_mov = $marcas_pal_movimiento;
-                $movimiento->modelos_mov = $modelos_pal_movimiento;
-                $movimiento->save();
+                    $movimiento = new Movimiento();
+                    $movimiento->tipo_mov = 'RETIRO';
+                    $movimiento->cantidad_mov = $request->has('cantidad_pro');//marca 0 porque está el input y ahi no escribimos nada
+                    $movimiento->fecha_mov = $fechaActual;
+                    $movimiento->nombre_mov = $nombre_pal_producto;
+                    $movimiento->users_id = auth()->user()->id;
+                    $movimiento->descripcion_mov = $descripcion_pal_movimiento;
+
+                    $movimiento->categorias_mov = $productos->categoria->nombre_cat;
+                    $movimiento->marcas_mov = $productos->marca->nombre_mar;
+                    $movimiento->modelos_mov = $productos->modelo->nombre_mod;
+                    $movimiento->save();
 
                 return redirect()->route('productos.index')
                     ->with('success', 'producto deleted successfully');
@@ -181,7 +177,6 @@ class ProductoController extends Controller
 
             }   
         }
-    }
     
 
 }

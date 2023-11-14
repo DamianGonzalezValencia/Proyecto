@@ -93,6 +93,7 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('CERRAR SESION') }}
+                                        {{--return view('/welcome')--}}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -107,7 +108,7 @@
             </div>
         </nav>
     </div>
-        <main class="d-flex flex-nowrap responsive" style="height:1100px; ">
+        <main class="d-flex flex-nowrap responsive" style="height:1450px; ">
         @if (Auth::check())
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark responsive" style="width: 21%; height:100%;" >
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">

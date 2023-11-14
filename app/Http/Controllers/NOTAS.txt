@@ -11,12 +11,11 @@ poder elegir la cantidad a retirar del producto pero manteniendo como maxima can
 
 
 >>>>>>>>>>>>>*Por Ultimo poder almacenar el registro de cambios en la vista "productos.edit"<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+error al editar un producto
+- ya se guardan los cambios, pero falta detallar mejor; por ejemplo; mostrar el antes y mostrar el después
 
 ------------------ FALLOS PENDIENTES --------------------
 *Hay que poner a prueba la paginacion de las vistas index. en especifico "productos.index" puede tener problemas
-*Al cerrar la pagina con un usuario logeado la pagina nunca cierra sesión.
-*Estando en la vista de "ingresar" para iniciar sesion, no hay manera de volver a la vista "welcome", hay error
 *validar en controlador de marcas y categorias entradas vacias.
 *la cantidad de retiro se pone en 0
 

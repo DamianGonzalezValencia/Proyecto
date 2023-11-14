@@ -1,6 +1,7 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        {{ Form::model($productos, ['route' => ['productos.update', $productos->id_pro], 'method' => 'PATCH']) }}
+        {{ Form::model($productos, ['route' => ['productos.update', $productos->id_pro], 'method' => 'PUT']) }}
+        <input type="hidden" name="id_pro" value="{{ $productos->id_pro }}">
 
         <div class="form-group">
             {{ Form::label('nombre_pro', 'Nombre del Producto') }}<div style="margin-bottom:1%;"></div>
