@@ -33,7 +33,7 @@ class ProductoController extends Controller
             'cantidad_pro' => 'required|numeric',
             'categorias_id_cat' => 'required',
             'marcas_id_mar' =>'required',
-            'modelos_id_mod' =>''
+            'modelos_id_mod' =>'required'
         ]);
 
         $fechaActual = date('d-m-y');
@@ -88,7 +88,7 @@ class ProductoController extends Controller
                 'cantidad_pro' => 'required|numeric',
                 'categorias_id_cat' => 'required',
                 'marcas_id_mar' =>'required',
-                'modelos_id_mod' =>''
+                'modelos_id_mod' =>'required'
             ]);
 
             $nombre_pro = $request->input('nombre_pro'); //Obtención de los valores requeridos

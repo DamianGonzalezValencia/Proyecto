@@ -89,6 +89,10 @@ class MarcaController extends Controller
     public function update(Request $request, $id_mar)
     {
         {
+            $request->validate([
+                'nombre_mar' => 'required|unique:marcas'
+            ]);
+    
             $nombre_mar = $request->input('nombre_mar');// Obtén el nuevo nombre de la categoría del formulario
 
              // Busca la categoría por su ID

@@ -20,7 +20,7 @@ class Producto extends Model
         'cantidad_pro' => 'required',
         'categorias_id_cat' => 'required',
         'marcas_id_mar' => 'required',
-        'modelos_id_mod' => '',
+        'modelos_id_mod' => 'required',
     ];
 
     protected $perPage = 20;

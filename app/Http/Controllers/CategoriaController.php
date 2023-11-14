@@ -89,6 +89,10 @@ class CategoriaController extends Controller
     public function update(Request $request, $id_cat)
     {
         {
+            $request->validate([
+                'nombre_cat' => 'required|unique:categorias'
+            ]);
+    
             $nombre_cat = $request->input('nombre_cat');// Obtén el nuevo nombre de la categoría del formulario
 
              // Busca la categoría por su ID

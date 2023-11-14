@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<tittle>Modelos</tittle>
+
 @section('template_title')
     {{ __('Update') }} Modelo
 @endsection
@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Update') }} Modelo</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('modelos.update', $modelos->id_mar) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('modelos.update', $modelos->id_mod) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

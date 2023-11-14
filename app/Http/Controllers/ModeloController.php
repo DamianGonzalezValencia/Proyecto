@@ -68,6 +68,10 @@ class ModeloController extends Controller
     public function update(Request $request, $id_mod)
     {
         {
+            $request->validate([
+                'nombre_mod' => 'required|unique:modelos'
+            ]);
+    
             $nombre_mod = $request->input('nombre_mod');// Obtén el nuevo nombre de la categoría del formulario
 
              // Busca la categoría por su ID
