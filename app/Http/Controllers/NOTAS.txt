@@ -1,61 +1,101 @@
 
--------- MOVIMIENTOS ----------
+-------------------- MEJORAS ---------------------
 
-
---------- PRODUCTOS -----------
-
+*Cambiar el orden de los productos y de movimientos para que se muestren primero los ultimos ingresados
 
 ----------- RELACION ENTRE PRODUCTOS Y RETIROS ----------
 *Como funcionalidad adicional para los retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
 poder elegir la cantidad a retirar del producto pero manteniendo como maxima cantidad a retirar, el stock disponible.
 
-*Error al ejecutar boton de aplicar cambios en pestaña de productos
-
-- ya se guardan los cambios, pero falta detallar mejor; por ejemplo; mostrar el antes y mostrar el después
-
 ------------------ FALLOS PENDIENTES --------------------
-*Hay que poner a prueba la paginacion de las vistas index. en especifico "productos.index" puede tener problemas
-*la cantidad de retiro se pone en 0
+*la cantidad de retiro se pone en 0 
+*En todas las vistas que NO son index el logo invertec no carga, ademas de el nombre "LARAVEL" en varias pestañas aún
 
 -------------- FUNCIONALIDADES A INCORPORAR --------------------
-*Consultar con Luis la opción de incorporar una funcionalidad para carga masiva desde excel.
+incorporar funcionalidad para carga masiva desde excel.
 *Otros requerimientos:
 1 mostrar en casilla de informaciones stocks mas bajos
 2 mostrar cantidad de productos por categoria
 3 mostrar cantidad de productos por marca
 
 
+----------------- CONTROLADOR DE PRODUCTOS (UPDATE) -----------------
+    public function update(Request $request, $id_pro)
+    {   
+            {$request->validate([
+                'nombre_pro' => 'required|unique:productos',
+                'descripcion_pro' => 'required',
+                'cantidad_pro' => 'required|numeric',
+                'categorias_id_cat' => 'required',
+                'marcas_id_mar' =>'required',
+                'modelos_id_mod' =>'required'
+            ]);
 
+            $nombre_pro = $request->input('nombre_pro'); //Obtención de los valores requeridos
+            $descripcion_pro = $request->input('descripcion_pro');
+            $cantidad_pro = $request->input('cantidad_pro');
+            $categorias_id_cat = $request->input('categorias_id_cat');
+            $marcas_id_mar = $request->input('marcas_id_mar');
+            $modelos_id_mod = $request->input('modelos_id_mod');
 
+            $productos = Producto::find($id_pro);
+                // Busca la categoría por su ID
+            $fechaActual = date('d-m-y');
+            if ($productos) {
 
+                $productos->nombre_pro = $nombre_pro;
+                $productos->descripcion_pro = $descripcion_pro;
+                $productos->cantidad_pro = $cantidad_pro;
+                $productos->categorias_id_cat = $categorias_id_cat;
+                $productos->marcas_id_mar = $marcas_id_mar;
+                $productos->modelos_id_mod = $modelos_id_mod;
+                $productos->save();
 
+                $productos = Producto::with('categoria', 'marca', 'modelo')->find($id_pro);
 
+                if($productos && $productos->categoria && $productos->marca && $productos->modelo){
+                    $nombre_pal_producto = $productos->nombre_pro;
+                    $descripcion_pal_movimiento = $productos->descripcion_pro;
 
+                    $categoriaNombre = $productos->categoria->nombre_cat ?? null;
+                    $marcaNombre = $productos->marca->nombre_mar ?? null;
+                    $modeloNombre = $productos->modelo->nombre_mod ?? null;
 
+                    $movimiento = new Movimiento();
+                    $movimiento->tipo_mov = 'MODIFICACION';
+                    $movimiento->cantidad_mov = $request->input('cantidad_pro');
+                    $movimiento->fecha_mov = date('d-m-y');
+                    $movimiento->nombre_mov = $productos->nombre_pro;
+                    $movimiento->users_id = auth()->user()->id;
+                    $movimiento->descripcion_mov = $productos->descripcion_pro;
+                    
+                    $movimiento->categorias_mov = $categoriaNombre;
+                    $movimiento->marcas_mov = $marcaNombre;
+                    $movimiento->modelos_mov = $modeloNombre;
 
+                    $movimiento->save();
+                    return view('productos.index', compact('productos'))->with('success', 'Producto actualizado correctamente.');
+                }else{
+                    return view('productos.index', compact('productos'))->with('error', 'No se pudo encontrar relaciones');
+                }
+            } else {
+                return redirect()->back()->with('error', 'No se pudo encontrar el Producto con el ID proporcionado.');
+            }
+        }
+    }
 
+---------------------------- ERRORES POR DIRIGIR MAL UNA RUTA --------------------------------
+return view('productos.index'); *ÉSTO ESTÁ MAL / ASÍ SI ->  return redirect()->route('productos.index')
+->with('success', 'Producto actualizado correctamente.');
+-ESTOS SON LOS ERRORES RELACIONADOS:
+"Undefined variable $i"
+Attempt to read property "id_pro" on bool
 
+---------------------------------- PETICIONES A CHATGPT -----------------------------------
+estoy trabajando con un proyecto de laravel y php sobre un inverntario de productos para datacenter, quisiera 
+saber como puedo incorporar a  mi funcion update una condicion que funcione de la siguiente manera;  
 
-
-
-
-
-
------------------- CONSULTAS A CHATGPT ------------------
-chatgpt, tengo una vista "movimientos.show" que manejo desde mi controlador Movimiento. 
-en la vista muestro datos como descripcion, categoría y marca que son datos almacenados en mi tabla "productos".
-deseo poder mostrar éstos 3 datos en mi vista show de movimientos que no están en mi tabla movimientos
-
-
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------------
 
 <main class="d-flex flex-nowrap">
   <h1 class="visually-hidden">Sidebars examples</h1>

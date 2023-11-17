@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/estilos.css') }}">
 
     <style>
         .logito{
@@ -38,7 +38,7 @@
             <div class="container" >
                 <div class="logito">
                     <a href="{{ url('/welcome') }}">
-                    <img src='./images/logo.png' alt='logo invertec' style="height:40px; text-align:center" >
+                    <img src='./images/logo.png' alt='logo.png' style="height:40px; text-align:center" >
                     </a>
                 </div>
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -108,7 +108,7 @@
             </div>
         </nav>
     </div>
-        <main class="d-flex flex-nowrap responsive" style="height:1450px; ">
+        <main class="d-flex flex-nowrap responsive" style="height:1480px; ">
         @if (Auth::check())
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark responsive" style="width: 21%; height:100%;" >
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -129,6 +129,17 @@
                 Historial de Acciones
                 </a>
             </li>
+
+            <!--<div class="acordeon">
+                <input type="radio" name="acordeon" id="btn-acordeon1" class="btn-acordeon">
+                    <label for="btn-acordeon1">
+                        ¿Lorem ipsum dolor sit amet.?
+                    </label>
+                <div class="contenido-acordeon">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias voluptates minima nesciunt omnis! Sed nemo magnam hic neque cupiditate consequuntur.</p>
+                </div>
+            </div>-->
+
             <li>
                 <a href="{{ route('productos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>

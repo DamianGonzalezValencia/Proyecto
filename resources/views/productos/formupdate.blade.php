@@ -1,7 +1,7 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        {{ Form::model($productos, ['route' => ['productos.update', $productos->id_pro], 'method' => 'PUT']) }}
-        <input type="hidden" name="id_pro" value="{{ $productos->id_pro }}">
+        {{ Form::model($productos, ['route' => ['productos.update', $productos->id_pro], 'method' => 'PATCH']) }}
+    
 
         <div class="form-group">
             {{ Form::label('nombre_pro', 'Nombre del Producto') }}<div style="margin-bottom:1%;"></div>
@@ -12,11 +12,6 @@
             {{ Form::label('descripcion_pro', 'Descripcion') }}<div style="margin-bottom:1%;"></div>
             {{ Form::text('descripcion_pro', null, ['class' => 'form-control' . ($errors->has('descripcion_pro') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion_pro', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group"><div style="margin-top:1%; "></div>
-            {{ Form::label('cantidad_pro', 'Cantidad de Productos') }}<div style="margin-bottom:1%;"></div>
-            {{ Form::number('cantidad_pro', null, ['class' => 'form-control' . ($errors->has('cantidad_pro') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
-            {!! $errors->first('cantidad_pro', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <!-- CATEGORIAS -->
         <div class="form-group"><div style="margin-top:1%; "></div>

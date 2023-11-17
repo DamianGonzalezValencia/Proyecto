@@ -24,7 +24,7 @@ Route::resource('marcas', App\Http\Controllers\MarcaController::class)->middlewa
 Route::resource('modelos', App\Http\Controllers\ModeloController::class)->middleware('auth');
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
-
+//Route::get('/productos.fallo',[App\Http\Controllers\ProductoController::class])
 
 
 //Route::resource('users')

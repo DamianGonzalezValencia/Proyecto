@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Marca;
+use App\Models\Modelo;
 use App\Models\Producto;
 use App\Models\Movimiento;
-use App\Models\Modelo;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
     public function index(){
+
         $productos = Producto::paginate(20);
 
-        return view('productos.index', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        if ($productos) {
+            return view('productos.index', compact('productos'))
+                ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        } else {
+            return redirect()->back()->with('error', 'Error al obtener los productos');
+        }
     }
 //------------------------------------------------------------
     public function create(){
@@ -82,66 +87,59 @@ class ProductoController extends Controller
 //--------------------------------------------------------------
     public function update(Request $request, $id_pro)
     {   
-            {$request->validate([
-                'nombre_pro' => 'required|unique:productos',
-                'descripcion_pro' => 'required',
-                'cantidad_pro' => 'required|numeric',
-                'categorias_id_cat' => 'required',
-                'marcas_id_mar' =>'required',
-                'modelos_id_mod' =>'required'
-            ]);
+        $validatedData = $request->validate([
+            
+            'nombre_pro' => 'required',
+            'descripcion_pro' => 'required',
+            'categorias_id_cat' => 'required|exists:categorias,id_cat',
+            'marcas_id_mar' =>'required|exists:marcas,id_mar',
+            'modelos_id_mod' =>'required|exists:modelos,id_mod'
+        ]);
 
-            $nombre_pro = $request->input('nombre_pro'); //Obtención de los valores requeridos
-            $descripcion_pro = $request->input('descripcion_pro');
-            $cantidad_pro = $request->input('cantidad_pro');
-            $categorias_id_cat = $request->input('categorias_id_cat');
-            $marcas_id_mar = $request->input('marcas_id_mar');
-            $modelos_id_mod = $request->input('modelos_id_mod');
+        $productos = Producto::find($id_pro);
 
-            $productos = Producto::find($id_pro);
+        if (!$productos) {
+            // Si el producto no se encuentra, redireccionar o mostrar un mensaje de error
+            return redirect()->route('productos.index')->with('error', 'El producto no fue encontrado.');
+        }else
+        
+        $cantidad_anterior = $productos->cantidad_pro;
+        $categoria_anterior = $productos->categoria->nombre_cat;
+        $marca_anterior = $productos->marca->nombre_mar;
+        $modelo_anterior = $productos->modelo->nombre_mod;
+
+        $productos->nombre_pro = $validatedData['nombre_pro']; //Obtención de los valores requeridos
+        $productos->descripcion_pro = $validatedData['descripcion_pro'];
+        $productos->cantidad_pro = $cantidad_anterior;
+        $productos->categorias_id_cat = $validatedData['categorias_id_cat'];
+        $productos->marcas_id_mar = $validatedData['marcas_id_mar'];
+        $productos->modelos_id_mod = $validatedData['modelos_id_mod'];
                 // Busca la categoría por su ID
-            $fechaActual = date('d-m-y');
-            if ($productos) {
+        $productos->save();
+        $fechaActual = date('d-m-y');
+        
 
-                $productos->nombre_pro = $nombre_pro;
-                $productos->descripcion_pro = $descripcion_pro;
-                $productos->cantidad_pro = $cantidad_pro;
-                $productos->categorias_id_cat = $categorias_id_cat;
-                $productos->marcas_id_mar = $marcas_id_mar;
-                $productos->modelos_id_mod = $modelos_id_mod;
-                $productos->save();
+            #----------------- MOVIMIENTOS -----------------------
+        $categorias = Categoria::findOrFail($request->input('categorias_id_cat'));
+        $marcas = Marca::findOrFail($request->input('marcas_id_mar'));
+        $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
 
-                $productos = Producto::with('categoria', 'marca', 'modelo')->find($id_pro);
-
-                if($productos && $productos->categoria && $productos->marca && $productos->modelo){
-                    $nombre_pal_producto = $productos->nombre_pro;
-                    $descripcion_pal_movimiento = $productos->descripcion_pro;
-
-                    $categoriaNombre = $productos->categoria->nombre_cat ?? null;
-                    $marcaNombre = $productos->marca->nombre_mar ?? null;
-                    $modeloNombre = $productos->modelo->nombre_mod ?? null;
-
-                    $movimiento = new Movimiento();
-                    $movimiento->tipo_mov = 'MODIFICACION';
-                    $movimiento->cantidad_mov = $request->input('cantidad_pro');
-                    $movimiento->fecha_mov = date('d-m-y');
-                    $movimiento->nombre_mov = $productos->nombre_pro;
-                    $movimiento->users_id = auth()->user()->id;
-                    $movimiento->descripcion_mov = $productos->descripcion_pro;
+        $movimiento = new Movimiento(); 
+        $movimiento->tipo_mov = 'MODIFICACION';
+        $movimiento->cantidad_mov = $productos->cantidad_pro;
+        $movimiento->fecha_mov = date('d-m-y');
+        $movimiento->nombre_mov = $productos->nombre_pro;
+        $movimiento->users_id = auth()->user()->id;
+        $movimiento->descripcion_mov = $productos->descripcion_pro;
                     
-                    $movimiento->categorias_mov = $categoriaNombre;
-                    $movimiento->marcas_mov = $marcaNombre;
-                    $movimiento->modelos_mov = $modeloNombre;
+        $movimiento->categorias_mov = "Categoría anterior: {$categoria_anterior},
+        Categoría nueva: {$categorias->nombre_cat}";
+        $movimiento->marcas_mov = "Marca anterior: {$marca_anterior}, Marca nueva: {$marcas->nombre_mar}";
+        $movimiento->modelos_mov = "Modelo anterior: {$modelo_anterior}, Modelo nuevo: {$modelos->nombre_mod}";
 
-                    $movimiento->save();
-                    return view('productos.index', compact('productos'))->with('success', 'Producto actualizado correctamente.');
-                }else{
-                    return view('productos.index', compact('productos'))->with('error', 'No se pudo encontrar relaciones');
-                }
-            } else {
-                return redirect()->back()->with('error', 'No se pudo encontrar el Producto con el ID proporcionado.');
-            }
-        }
+        $movimiento->save();
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente.');
+    
     }
 //----------------------------------------------------------------
     public function destroy($id_pro)

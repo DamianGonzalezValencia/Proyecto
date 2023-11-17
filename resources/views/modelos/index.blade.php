@@ -16,7 +16,7 @@
                                 {{ __('MODELOS') }}
                             </span>
 
-                             <div class="float-right">
+                             <div class="float-right" style="padding-right:4%">
                                 <a href="{{ route('modelos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('CREAR NUEVO MODELO') }}
                                 </a>
