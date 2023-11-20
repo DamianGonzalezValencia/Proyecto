@@ -12,7 +12,7 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        $modelos = Modelo::paginate(20);
+        $modelos = Modelo::orderBy('created_at','desc')->paginate(20);
 
         return view('modelos.index', compact('modelos'))
             ->with('i', (request()->input('page', 1) - 1) * $modelos->perPage());

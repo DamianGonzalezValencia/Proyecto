@@ -18,7 +18,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate(20);
+        $categorias = Categoria::orderBy('created_at','desc')->paginate(20);
 
         return view('categorias.index', compact('categorias'))
             ->with('i', (request()->input('page', 1) - 1) * $categorias->perPage());

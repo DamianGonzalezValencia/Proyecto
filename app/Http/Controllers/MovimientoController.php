@@ -13,7 +13,7 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        $movimientos = Movimiento::paginate(20);
+        $movimientos = Movimiento::orderBy('created_at','desc')->paginate(20);
 
         return view('movimientos.index', compact('movimientos'))
         ->with('i', (request()->input('page',1) - 1) * $movimientos->perPage());

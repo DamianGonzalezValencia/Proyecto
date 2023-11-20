@@ -9,7 +9,6 @@ poder elegir la cantidad a retirar del producto pero manteniendo como maxima can
 
 ------------------ FALLOS PENDIENTES --------------------
 *la cantidad de retiro se pone en 0 
-*En todas las vistas que NO son index el logo invertec no carga, ademas de el nombre "LARAVEL" en varias pestañas aún
 
 -------------- FUNCIONALIDADES A INCORPORAR --------------------
 incorporar funcionalidad para carga masiva desde excel.
@@ -19,7 +18,30 @@ incorporar funcionalidad para carga masiva desde excel.
 3 mostrar cantidad de productos por marca
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------- CONTROLADOR DE PRODUCTOS (UPDATE) -----------------
+
     public function update(Request $request, $id_pro)
     {   
             {$request->validate([
@@ -90,7 +112,12 @@ return view('productos.index'); *ÉSTO ESTÁ MAL / ASÍ SI ->  return redirect()
 -ESTOS SON LOS ERRORES RELACIONADOS:
 "Undefined variable $i"
 Attempt to read property "id_pro" on bool
-
+---------------------------- ERROR EL NOMBRE QUEDA EN LARAVEL (PESTAÑA) ---------------------
+<title>{{ config('Inventario Invertec', 'INVENTARIO INVERTEC') }}</title>
+                        ^ Acá se cambia, antes decia "app.name"
+---------------------------- ERRORES EL LOGO NO CARGA -----------------------
+<img src='/ images/logo.png' alt='logo.png' style="height:40px; text-align:center" >
+           ^ *El error era que aquí le puse un punto 
 ---------------------------------- PETICIONES A CHATGPT -----------------------------------
 estoy trabajando con un proyecto de laravel y php sobre un inverntario de productos para datacenter, quisiera 
 saber como puedo incorporar a  mi funcion update una condicion que funcione de la siguiente manera;  

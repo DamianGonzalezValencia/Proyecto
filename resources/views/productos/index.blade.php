@@ -19,7 +19,7 @@
                             
                             <div class="float-right" >
                                 <a href="{{ route('productos.create') }}" style="font-size:115%" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('INGRESAR PRODUCTO NUEVO') }}
+                                  {{ __('INGRESAR PRODUTO NUEVO') }}
                                 </a>
                             </div>
                             <div class="float-right" style="padding-right:9%">

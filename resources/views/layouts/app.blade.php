@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'INVENTARIO INVERTEC') }}</title>
+    <title>{{ config('Inventario Invertec', 'INVENTARIO INVERTEC') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -38,7 +38,7 @@
             <div class="container" >
                 <div class="logito">
                     <a href="{{ url('/welcome') }}">
-                    <img src='./images/logo.png' alt='logo.png' style="height:40px; text-align:center" >
+                    <img src='/images/logo.png' alt='logo.png' style="height:40px; text-align:center" >
                     </a>
                 </div>
                 <a class="navbar-brand" href="{{ url('/home') }}">

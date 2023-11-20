@@ -1,3 +1,5 @@
+
+
 <div class="box box-info padding-1">
     <div class="box-body">
         {{ Form::model($productos, ['route' => ['productos.update', $productos->id_pro], 'method' => 'PATCH']) }}

@@ -13,7 +13,7 @@ class ProductoController extends Controller
 {
     public function index(){
 
-        $productos = Producto::paginate(20);
+        $productos = Producto::orderBy('created_at', 'desc')->paginate(20);
 
         if ($productos) {
             return view('productos.index', compact('productos'))
@@ -41,34 +41,35 @@ class ProductoController extends Controller
             'modelos_id_mod' =>'required'
         ]);
 
-        $fechaActual = date('d-m-y');
-        $productos = Producto::create($request->all());
+        
+            $fechaActual = date('d-m-y');
+            $productos = Producto::create($request->all());
 
-        if($productos){
-            $nombre_pal_producto = $productos->nombre_pro;
-            $descripcion_pal_movimiento = $productos->descripcion_pro;
+            if($productos){
+                $nombre_pal_producto = $productos->nombre_pro;
+                $descripcion_pal_movimiento = $productos->descripcion_pro;
 
-            $categorias = Categoria::findOrFail($request->input('categorias_id_cat'));
-            $marcas = Marca::findOrFail($request->input('marcas_id_mar'));
-            $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
+                $categorias = Categoria::findOrFail($request->input('categorias_id_cat'));
+                $marcas = Marca::findOrFail($request->input('marcas_id_mar'));
+                $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
 
-            $movimiento = new Movimiento();
-            $movimiento->tipo_mov = 'INGRESO';
-            $movimiento->cantidad_mov = $request->input('cantidad_pro');
-            $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
-            $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
-            $movimiento->users_id = auth()->user()->id;
-            $movimiento->descripcion_mov = $descripcion_pal_movimiento;
+                $movimiento = new Movimiento();
+                $movimiento->tipo_mov = 'INGRESO';
+                $movimiento->cantidad_mov = $request->input('cantidad_pro');
+                $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
+                $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
+                $movimiento->users_id = auth()->user()->id;
+                $movimiento->descripcion_mov = $descripcion_pal_movimiento;
 
-            $movimiento->categorias_mov = $categorias->nombre_cat;
-            $movimiento->marcas_mov = $marcas->nombre_mar;
-            $movimiento->modelos_mov = $modelos->nombre_mod;
-            $movimiento->save();
+                $movimiento->categorias_mov = $categorias->nombre_cat;
+                $movimiento->marcas_mov = $marcas->nombre_mar;
+                $movimiento->modelos_mov = $modelos->nombre_mod;
+                $movimiento->save();
 
-            return redirect()->route('productos.index')->with("success",'Producto creado de manera exitosa.');
-        }else{
-            print 'ACÁ SE HECHÓ A PERDER';
-        }
+                return redirect()->route('productos.index')->with("success",'Producto creado de manera exitosa.');
+            }else{
+                print 'ACÁ SE HECHÓ A PERDER';
+            }
     }
 //-------------------------------------------------------------
     public function show($id_pro){
