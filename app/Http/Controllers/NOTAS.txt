@@ -1,22 +1,41 @@
 
 -------------------- MEJORAS ---------------------
 
-*Cambiar el orden de los productos y de movimientos para que se muestren primero los ultimos ingresados
 
 ----------- RELACION ENTRE PRODUCTOS Y RETIROS ----------
-*Como funcionalidad adicional para los retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
+Retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
 poder elegir la cantidad a retirar del producto pero manteniendo como maxima cantidad a retirar, el stock disponible.
 
 ------------------ FALLOS PENDIENTES --------------------
 *la cantidad de retiro se pone en 0 
 
--------------- FUNCIONALIDADES A INCORPORAR --------------------
-incorporar funcionalidad para carga masiva desde excel.
-*Otros requerimientos:
+-------------- OTROS REQUERIMIENTOS --------------------
 1 mostrar en casilla de informaciones stocks mas bajos
 2 mostrar cantidad de productos por categoria
 3 mostrar cantidad de productos por marca
 
+-------------- PENDIENTES DE DIA ANTERIOR --------------------
+revisar que los controladores funcionen bien y reciban correctamente la informacion de vistas
+
+
+  //$productos = Producto::orderBy('created_at', 'desc')->paginate(20);
+
+        //if ($productos) {
+            //return view('productos.index', compact('productos'))
+                //->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        //} else {
+            //return redirect()->back()->with('error', 'Error al obtener los productos');
+        //}
+
+
+
+        //$productos = Producto::query()
+        //    ->with(['productos'])
+        //    ->when(request('search'), function ($query){
+        //        return $query->where('nombre_pro', 'like', '%'. request('search') . '%');
+        //    })
+        //    ->paginate(5);
+        //return view('productos.index', compact('productos'));
 
 
 
@@ -36,8 +55,8 @@ incorporar funcionalidad para carga masiva desde excel.
 
 
 
-
-
+-------------- FUNCIONALIDADES A INCORPORAR --------------------
+----------*carga masiva desde excel.------
 
 
 ----------------- CONTROLADOR DE PRODUCTOS (UPDATE) -----------------

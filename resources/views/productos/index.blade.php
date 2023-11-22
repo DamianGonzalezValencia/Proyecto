@@ -16,15 +16,19 @@
                                 {{ __('LISTADO DE PRODUCTOS') }}
                             </span>
 
-                            
-                            <div class="float-right" >
-                                <a href="{{ route('productos.create') }}" style="font-size:115%" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                            <form action="{{route('productos.index')}}" method="GET" class="col-5" style="margin-top:1%">
+                                <div class="input-group">
+                                    <input type='text' class="form-control" name="busqueda">
+                                    <div class="input-group-append" style="margin-left:1%">
+                                        <input type='submit' class="btn btn-primary" value="Buscar">
+                                    </div>
+                                </div>
+                            </form>
+                        
+                                    
+                            <div class="float-right" style="padding-right:5%">
+                                <a href="{{ route('productos.create') }}" style="font-size:110%" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('INGRESAR PRODUTO NUEVO') }}
-                                </a>
-                            </div>
-                            <div class="float-right" style="padding-right:9%">
-                                <a href="{{ route('productos.create') }}" style="font-size:115%" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('AÑADIR STOCK A UN PRODUCTO') }}
                                 </a>
                             </div>
 
@@ -44,7 +48,7 @@
                                     <tr>
                                         <th style="width:3%;">N°</th>
                                         
-										<th>Id Pro</th>
+										<th>Id</th>
 										<th>Nombre de Producto</th>
                                         <th>Stock</th>
                                         <th>Categoria</th>
@@ -67,11 +71,16 @@
 
                                             <td>
                                                 <form action="{{ route('productos.destroy',$paginacion->id_pro) }}" method="POST">
-                                                <a class="btn btn-sm btn-primary" href="{{route('productos.show',$paginacion->id_pro) }}"><i class="fa fa-fw fa-eye"></i> {{ __('VER DETALLES') }}</a>
-                                                <a class="btn btn-sm btn-success" href="{{route('productos.edit',$paginacion->id_pro) }}"><i class="fa fa-fw fa-edit"></i> {{ __('EDITAR') }}</a>    
+                                                <a class="btn btn-sm btn-primary" href="{{route('productos.show',$paginacion->id_pro) }}"><i class="fa fa-fw fa-eye"></i> {{ __('DETALLES') }}</a>    
+                                                <a class="btn btn-sm btn-success" href="{{ route('productos.editstockmas', $paginacion->id_pro) }}">
+                                                    <i class="fa fa-fw fa-edit"></i> {{ __('AÑADIR STOCK') }}
+                                                </a>
+                                                <a class="btn btn-sm btn-danger" href="{{ route('productos.editstockmenos', $paginacion->id_pro) }}">
+                                                    <i class="fa fa-fw fa-edit"></i> {{ __('RETIRAR') }}
+                                                </a>
+
                                                 @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('RETIRAR') }}</button>
+                                              
                                                 </form>
                                             </td>
                                             

@@ -1,3 +1,8 @@
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="box box-info padding-1">
     <div class="box-body" >
     

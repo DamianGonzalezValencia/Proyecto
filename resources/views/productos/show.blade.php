@@ -13,6 +13,7 @@
                         <div class="float">
                             <span class="card-title">{{ __('DETALLES') }} PRODUCTO</span>
                             <a class="btn btn-primary" style="margin-left:20px" href="{{ route('productos.index') }}"> {{ __('Volver') }}</a>
+                            <a class="btn btn-success"  href="{{route('productos.edit',$productos->id_pro) }}"><i class="fa fa-fw fa-edit"></i> {{ __('EDITAR') }}</a>  
                         </div>
                     </div>
 
