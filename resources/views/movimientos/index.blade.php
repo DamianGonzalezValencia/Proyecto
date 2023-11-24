@@ -44,8 +44,8 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td style="text-align:center">{{ $paginacion->id_mov }}</td>
-											<td>{{ $paginacion->tipo_mov }}</td>
-                                            <td style="text-align:center">{{ $paginacion->cantidad_mov }}</td>
+											<td style="width:14%">{{ $paginacion->tipo_mov }}</td>
+                                            <td style="text-align:center; width:11%" >{{ $paginacion->cantidad_mov }}</td>
                                             <td>{{ $paginacion->fecha_mov }}</td><!-- PUEDE QUE HAYA QUE SOLO QUITAR LA LETRA "S" -->
                                             <td>{{ $paginacion->nombre_mov }}</td>
                                             <td>{{ $paginacion->user->name }}</td>

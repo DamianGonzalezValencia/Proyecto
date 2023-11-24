@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('DisminuirStock') }} Producto
+    {{ __('AumentarStock') }} Producto
 @endsection
 
 @section('content')
@@ -14,14 +14,15 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Retirar Producto') }} </span>
+                        <span class="card-title">{{ __('AUMENTO DE STOCK') }} </span>
+                        <a class="btn btn-primary" style="margin-left:20px" href="{{ route('productos.index') }}"> {{ __('VOLVER') }}</a>
                     </div>
                     <div class="card-body">
-                         <form method="POST" action="{{ route('productos.disminuirStock', $productos->id_pro) }}"  role="form" enctype="multipart/form-data">
+                         <form method="POST" action="{{ route('productos.añadirMasProductos', $productos->id_pro) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('productos.formupdatemenos')
+                            @include('productos.formupdatemas')
 
                         </form>
                     </div>

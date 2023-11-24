@@ -11,6 +11,12 @@
     cursor: pointer; /* Cambiar el cursor al pasar el mouse */
   }
 
+  .botonsitopp {
+    position: absolute;
+    right: 0;
+  }
+
+
   .navbar-nav .nav-link {
     color: white; /* Color predeterminado, puedes cambiarlo según tus preferencias */
 }

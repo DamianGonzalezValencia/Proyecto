@@ -65,7 +65,7 @@ class ProductoController extends Controller
             $request->validate([
                 'nombre_pro' => 'required',
                 'descripcion_pro' => 'required',
-                'cantidad_pro' => 'required|numeric',
+                'cantidad_pro' => 'required|numeric|gt:0',
                 'categorias_id_cat' => 'required',
                 'marcas_id_mar' => 'required',
                 'modelos_id_mod' => 'required',
@@ -95,7 +95,7 @@ class ProductoController extends Controller
                 $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
 
                 $movimiento = new Movimiento();
-                $movimiento->tipo_mov = 'INGRESO';
+                $movimiento->tipo_mov = 'NUEVO PRODUCTO';
                 $movimiento->cantidad_mov = $request->input('cantidad_pro');
                 $movimiento->fecha_mov = $fechaActual;#$fecha_mov capturar la fecha y guardarla 
                 $movimiento->nombre_mov = $nombre_pal_producto;#debo agregar el campo nuevo
@@ -222,88 +222,4 @@ class ProductoController extends Controller
 
 //----------------------------------------------------------------
 
-    public function aumentarStock(Request $request, $id_pro)
-    {
-        $validatedData = $request->validate([
-            
-            'nombre_pro' => 'required',
-            'descripcion_pro' => 'required',
-            'categorias_id_cat' => 'required|exists:categorias,id_cat',
-            'marcas_id_mar' =>'required|exists:marcas,id_mar',
-            'modelos_id_mod' =>'required|exists:modelos,id_mod'
-        ]);
-
-        $productos = Producto::find($id_pro);
-
-        if (!$productos) {
-            // Si el producto no se encuentra, redireccionar o mostrar un mensaje de error
-            return redirect()->route('productos.index')->with('error', 'El producto no fue encontrado.');
-        }else
-        
-        $nombre_anterior = $productos->nombre_pro;
-        $descripcion_anterior = $productos->descripcion_pro;
-        $cantidad_anterior = $productos->cantidad_pro;
-        $categoria_anterior = $productos->categoria->nombre_cat;
-        $marca_anterior = $productos->marca->nombre_mar;
-        $modelo_anterior = $productos->modelo->nombre_mod;
-
-        $productos->nombre_pro = $validatedData['nombre_pro']; //Obtención de los valores requeridos
-        $productos->descripcion_pro = $validatedData['descripcion_pro'];
-        $productos->cantidad_pro = $cantidad_anterior;
-        $productos->categorias_id_cat = $validatedData['categorias_id_cat'];
-        $productos->marcas_id_mar = $validatedData['marcas_id_mar'];
-        $productos->modelos_id_mod = $validatedData['modelos_id_mod'];
-                // Busca la categoría por su ID
-        $productos->save();
-        $fechaActual = date('d-m-y');
-        
-
-            #----------------- MOVIMIENTOS -----------------------
-        $categorias = Categoria::findOrFail($request->input('categorias_id_cat'));
-        $marcas = Marca::findOrFail($request->input('marcas_id_mar'));
-        $modelos = Modelo::findOrFail($request->input('modelos_id_mod'));
-
-        $movimiento = new Movimiento(); 
-        $movimiento->tipo_mov = 'MODIFICACION';
-        $movimiento->cantidad_mov = "Cantidad Anterior: {$cantidad_anterior}, Cantidad Actual: {$productos-> cantidad_pro}";
-        $movimiento->fecha_mov = date('d-m-y');
-        $movimiento->nombre_mov = "Nombre Anterior: {$nombre_anterior}, Nombre Actual: {$productos-> nombre_por}";
-        $movimiento->users_id = auth()->user()->id;
-        $movimiento->descripcion_mov = "Descripcion Anterior: {$descripcion_anterior}, Descripcion Actual: {$productos->descripcion_pro}";
-                    
-        $movimiento->categorias_mov = "Categoría anterior: {$categoria_anterior},
-        Categoría nueva: {$categorias->nombre_cat}";
-        $movimiento->marcas_mov = "Marca anterior: {$marca_anterior}, Marca nueva: {$marcas->nombre_mar}";
-        $movimiento->modelos_mov = "Modelo anterior: {$modelo_anterior}, Modelo nuevo: {$modelos->nombre_mod}";
-
-        $movimiento->save();
-        return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente.');
-
-    }
-
-//----------------------------------------------------------------
-
-    public function disminuirStock($id_pro, $cantidad_pro)
-    {
-        $productos = Producto::findOrFail($id_pro);
-
-        // Verificar si hay suficiente stock antes de disminuir
-        if ($productos->cantidad_pro >= $cantidad_pro) {
-            // Disminuir el stock
-            $productos->cantidad_pro -= $cantidad_pro;
-            $productos->save();
-    
-            return redirect('productos.show')->back()->with('success', 'Se disminuyó el stock del producto.');
-        } else {
-            return redirect('productos.show')->back()->with('error', 'No hay suficiente stock disponible para disminuir.');
-        }
-    }
-
 }
-        //$productos = Producto::findOrFail($id_pro);
-
-        // Aumentar el stock
-        //$productos->cantidad_pro += $cantidad_pro;
-        //$productos->save();
-
-        //return redirect('productos.show')->back()->with('success', 'Se aumentó el stock del producto.');

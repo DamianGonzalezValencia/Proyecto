@@ -14,6 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/estilos.css') }}">
 
+
     <style>
         .logito{
             width: 5%;
@@ -24,6 +25,13 @@
         .centrar{
             text-align: center;
             float: center;
+        }
+
+        #btn-borrar-producto {
+            position: absolute;
+            right: 20px; /* Cambia este valor según la distancia que desees del borde derecho */
+            top: 50%; /* Ajusta la posición vertical si es necesario */
+            transform: translateY(-50%);
         }
 
 
@@ -171,6 +179,8 @@
         @endif
             @yield('content')
         </main>
+
+
 
 </body>
 </html>

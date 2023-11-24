@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\StockController;
 
 Route::get('/', function () {
     return view('/welcome');
@@ -15,13 +15,15 @@ Route::resource('modelos', App\Http\Controllers\ModeloController::class)->middle
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
 
-Route::get('productos/{producto}/edit2', [ProductoController::class, 'aumentarStock'])->middleware('auth')->name('productos.editstockmas');
-Route::get('productos/{producto}/edit3', [ProductoController::class, 'disminuirStock'])->middleware('auth')->name('productos.editstockmenos');
-//Route::get('/ruta',[ProductoController::class, 'aumentarStock']);
-//Route::get('productos/{id_pro}/aumentar', 'Controllers\ProductoController@aumentarStock')->name('productos.editstockmas')->middleware('auth');
-//Route::get('productos/{id_pro}/disminuir', 'Controllers\ProductoController@disminuirStock')->name('productos.editstockmenos')->middleware('auth');
 
-//Route::get('productos/{id_pro}/aumentarform', 'Controllers\ProductoController@aumentarStock')->name('productos.formupdatemas');
-//Route::get('productos/{id_pro}/disminuirform', 'Controllers\ProductoController@disminuirStock')->name('productos.formupdatemenos');
+#-------------------- CONTROLADOR DE STOCK ---------------------------------------------------------
+Route::patch('productos/{id_pro}/añadir-mas-stock', [StockController::class, 'añadirMasProductos'])->name('productos.añadirMasProductos')->middleware('auth');
+Route::get('productos/{id_pro}/aumentar-stock', [StockController::class, 'aumentarStock'])->name('productos.aumentarStock')->middleware('auth');
+Route::patch('productos/{id_pro}/aumentar-stock', [StockController::class, 'añadirMasProductos'])->name('productos.añadirMasProductos')->middleware('auth');
+
+Route::get('productos/{id_pro}/retirar-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
+Route::get('productos/{id_pro}/disminuir-stock', [StockController::class, 'disminuirStock'])->name('productos.disminuirStock')->middleware('auth');
+Route::patch('productos/{id_pro}/disminuir-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

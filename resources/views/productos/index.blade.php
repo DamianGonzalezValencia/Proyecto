@@ -72,11 +72,11 @@
                                             <td>
                                                 <form action="{{ route('productos.destroy',$paginacion->id_pro) }}" method="POST">
                                                 <a class="btn btn-sm btn-primary" href="{{route('productos.show',$paginacion->id_pro) }}"><i class="fa fa-fw fa-eye"></i> {{ __('DETALLES') }}</a>    
-                                                <a class="btn btn-sm btn-success" href="{{ route('productos.editstockmas', $paginacion->id_pro) }}">
-                                                    <i class="fa fa-fw fa-edit"></i> {{ __('AÑADIR STOCK') }}
+                                                <a href="{{ route('productos.aumentarStock', ['id_pro' => $paginacion->id_pro]) }}" class="btn btn-sm btn-success">
+                                                    AÑADIR
                                                 </a>
-                                                <a class="btn btn-sm btn-danger" href="{{ route('productos.editstockmenos', $paginacion->id_pro) }}">
-                                                    <i class="fa fa-fw fa-edit"></i> {{ __('RETIRAR') }}
+                                                <a href="{{ route('productos.disminuirStock', ['id_pro' => $paginacion->id_pro]) }}" class="btn btn-sm btn-danger">
+                                                    RETIRAR
                                                 </a>
 
                                                 @csrf
