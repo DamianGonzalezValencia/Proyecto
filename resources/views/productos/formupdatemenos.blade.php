@@ -45,10 +45,11 @@
                     {{ Form::number('cantidad_pro', $productos->cantidad_pro, ['class' => 'form-control' . ($errors->has('cantidad_pro') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese la cantidad']) }}
                     {!! $errors->first('cantidad_pro', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
-        
-        {!! Form::open(['route' => ['productos.retirarProductos', $productos->id_pro], 'method' => 'PATCH']) !!}
-            {{ Form::submit('RETIRAR', ['class' => 'btn btn-danger']) }}
-        {!! Form::close() !!}
+                <div style="margin-top:4%">
+                    {!! Form::open(['route' => ['productos.retirarProductos', $productos->id_pro], 'method' => 'PATCH']) !!}
+                        {{ Form::submit('RETIRAR', ['class' => 'btn btn-danger']) }}
+                    {!! Form::close() !!}
+                </div>
             </div>
             </div>
         </div>

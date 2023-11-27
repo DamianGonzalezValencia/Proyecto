@@ -25,5 +25,7 @@ Route::get('productos/{id_pro}/retirar-stock', [StockController::class, 'retirar
 Route::get('productos/{id_pro}/disminuir-stock', [StockController::class, 'disminuirStock'])->name('productos.disminuirStock')->middleware('auth');
 Route::patch('productos/{id_pro}/disminuir-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
 
+Route::delete('productos/{id_pro}/disminuir-stock(', [StockController::class, 'retirarProductos'])->name('productos.eliminar')->middleware('auth');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
