@@ -70,7 +70,7 @@
                                             
 
                                             <td>
-                                                <form action="{{ route('productos.destroy',$paginacion->id_pro) }}" class="formulario-de-confirmacion" method="POST">
+                                                <form action="{{ route('productos.destroy',$paginacion->id_pro) }}" class="form-eliminar" method="POST">
                                                 <a class="btn btn-sm btn-primary" href="{{route('productos.show',$paginacion->id_pro) }}"><i class="fa fa-fw fa-eye"></i> {{ __('DETALLES') }}</a>    
                                                 <a href="{{ route('productos.aumentarStock', ['id_pro' => $paginacion->id_pro]) }}" class="btn btn-sm btn-success">
                                                     AÑADIR
@@ -79,9 +79,9 @@
                                                     RETIRAR
                                                 </a>
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                                <button type="submit" class="btn btn-sm btn-danger deleteProducto" onclick="return confirm('¿ESTÁ SEGURO DE BORRAR EL PRODUCTO? \n No se podrán revertir los cambios.');"><i class="bi bi-trash3"></i></button>                                           
                                                 @csrf
-                                              
+                                            
                                                 </form>
                                             </td>
                                             
@@ -100,3 +100,4 @@
     </div>
 
 @endsection
+

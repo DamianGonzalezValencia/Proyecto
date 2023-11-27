@@ -192,6 +192,7 @@ class ProductoController extends Controller
             $fechaActual = date('d-m-y');
             $productos = Producto::with('categoria', 'marca', 'modelo')->find($id_pro);
 
+            
             if ($productos){
                 $nombre_pal_producto = $productos->nombre_pro;
                 $cantidad_anterior = $productos->cantidad_pro;

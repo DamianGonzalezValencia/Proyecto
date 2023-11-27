@@ -35,10 +35,18 @@
             transform: translateY(-50%);
         }
 
-
+        .custom-alert {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
     </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 <body >
     <div id="app" >
@@ -139,16 +147,6 @@
                 </a>
             </li>
 
-            <!--<div class="acordeon">
-                <input type="radio" name="acordeon" id="btn-acordeon1" class="btn-acordeon">
-                    <label for="btn-acordeon1">
-                        ¿Lorem ipsum dolor sit amet.?
-                    </label>
-                <div class="contenido-acordeon">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias voluptates minima nesciunt omnis! Sed nemo magnam hic neque cupiditate consequuntur.</p>
-                </div>
-            </div>-->
-
             <li>
                 <a href="{{ route('productos.index') }}" class="nav-link text-white" style="font-size:120%; margin-bottom:5%">
                 <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
@@ -180,9 +178,7 @@
         @endif
             @yield('content')
         </main>
-
-
-
+       
 </body>
 </html>
 

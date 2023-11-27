@@ -3,11 +3,10 @@
 
 
 ----------- RELACION ENTRE PRODUCTOS Y RETIROS ----------
-Retiros; (1) seleccionar un producto, (2) luego de estar en una vista similar a la de "show" 
-poder elegir la cantidad a retirar del producto pero manteniendo como maxima cantidad a retirar, el stock disponible.
+
 
 ------------------ FALLOS PENDIENTES --------------------
-*la cantidad de retiro se pone en 0 
+Cuando elija efectuar un ingreso o retiro, el input debe estar en 0
 
 -------------- OTROS REQUERIMIENTOS --------------------
 1 mostrar en casilla de informaciones stocks mas bajos
@@ -15,7 +14,7 @@ poder elegir la cantidad a retirar del producto pero manteniendo como maxima can
 3 mostrar cantidad de productos por marca
 
 -------------- PENDIENTES DE DIA ANTERIOR --------------------
-Queda entender y hacer bien las rutas, ademas de un boton de confirmacion para borrar un producto
+
 
 [php artisan route:list] Éste es el comando para poder mirar las rutas
   
