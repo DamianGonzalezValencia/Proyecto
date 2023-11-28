@@ -42,7 +42,7 @@
 
                 <div class="form-group"><div style="margin:1%;"></div>
                     {{ Form::label('Ingrese cantidad a Retirar') }}<div style="margin-bottom:1%;"></div>
-                    {{ Form::number('cantidad_pro', $productos->cantidad_pro, ['class' => 'form-control' . ($errors->has('cantidad_pro') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese la cantidad']) }}
+                    {{ Form::number('cantidad_pro', '', ['class' => 'form-control' . ($errors->has('cantidad_pro') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese la cantidad']) }}
                     {!! $errors->first('cantidad_pro', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div style="margin-top:4%">

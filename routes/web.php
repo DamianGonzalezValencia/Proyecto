@@ -17,15 +17,12 @@ Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)
 
 
 #-------------------- CONTROLADOR DE STOCK ---------------------------------------------------------
-Route::patch('productos/{id_pro}/añadir-mas-stock', [StockController::class, 'añadirMasProductos'])->name('productos.añadirMasProductos')->middleware('auth');
 Route::get('productos/{id_pro}/aumentar-stock', [StockController::class, 'aumentarStock'])->name('productos.aumentarStock')->middleware('auth');
 Route::patch('productos/{id_pro}/aumentar-stock', [StockController::class, 'añadirMasProductos'])->name('productos.añadirMasProductos')->middleware('auth');
 
-Route::get('productos/{id_pro}/retirar-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
 Route::get('productos/{id_pro}/disminuir-stock', [StockController::class, 'disminuirStock'])->name('productos.disminuirStock')->middleware('auth');
 Route::patch('productos/{id_pro}/disminuir-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
 
 Route::delete('productos/{id_pro}/disminuir-stock(', [StockController::class, 'retirarProductos'])->name('productos.eliminar')->middleware('auth');
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
