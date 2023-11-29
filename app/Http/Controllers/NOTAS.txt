@@ -6,7 +6,7 @@
 
 
 ------------------ FALLOS PENDIENTES --------------------
-Cuando elija efectuar un ingreso o retiro, el input debe estar en 0
+
 
 -------------- OTROS REQUERIMIENTOS --------------------
 1 mostrar en casilla de informaciones stocks mas bajos
@@ -25,7 +25,14 @@ Cuando elija efectuar un ingreso o retiro, el input debe estar en 0
 
 -------------- FUNCIONALIDADES A INCORPORAR --------------------
 ----------*carga masiva desde excel.------
-
+-agregar en vista home, "stocks mas bajos" (cantidades menores o igual a 3)
+-select dinamico de acuerdo a categoria seleccionada
+- en vista movimientos index, dejar solo el nombre actual, y en ver detalles colocar ambos
+- el nombre actual no me lo trae
+- alert en retirar al ingresar valor mas grande que el disponible y en prestamos también
+- alert de confirmacion para ingresos y retiros mayores a 10
+- hacer sitio responsive
+-ionic = es como un editor o herramienta para transformar en apk sitio web
 
 ----------------- CONTROLADOR DE PRODUCTOS (UPDATE) -----------------
 
@@ -43,6 +50,14 @@ Attempt to read property "id_pro" on bool
 ---------------------------- ERRORES EL LOGO NO CARGA -----------------------
 <img src='/ images/logo.png' alt='logo.png' style="height:40px; text-align:center" >
            ^ *El error era que aquí le puse un punto 
+---------------------------- PARA DEJAR UN CAMPLO DE MANERA PREDETERMINADA EN BLANCO ------------------
+<div class="form-group"><div style="margin:1%;"></div>
+  {{ Form::label('Ingrese cantidad a Retirar') }}<div style="margin-bottom:1%;"></div>
+  {{ Form::number('cantidad_pro', '', ['class' => 'form-control' . ($errors->has('cantidad_pro') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese la cantidad']) }}
+                                   ^ Ese par de comillas
+  {!! $errors->first('cantidad_pro', '<div class="invalid-feedback">:message</div>') !!}
+</div>
+
 ---------------------------------- PETICIONES A CHATGPT -----------------------------------
 estoy trabajando con un proyecto de laravel y php sobre un inverntario de productos para datacenter, quisiera 
 saber como puedo incorporar a  mi funcion update una condicion que funcione de la siguiente manera;  

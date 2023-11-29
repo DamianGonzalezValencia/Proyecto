@@ -38,6 +38,19 @@ class StockController extends Controller
 
 //----------------------------------------------------------------
 
+    public function prestamosShow(Request $request, $id_pro)
+    {
+        $productos = Producto::findOrFail($id_pro);
+        $categorias= Categoria::pluck('nombre_cat','id_cat');
+        $marcas= Marca::pluck('nombre_mar','id_mar');
+        $modelos= Modelo::pluck('nombre_mod','id_mod');
+
+
+        return view('productos.prestamos_stock', compact('productos','categorias','marcas','modelos'));
+    }
+
+//----------------------------------------------------------------
+
     public function añadirMasProductos(Request $request, $id_pro)
     {
         $validatedData = $request->validate([
@@ -176,7 +189,7 @@ class StockController extends Controller
 
 //----------------------------------------------------------------
 
-    public function prestamos(Request $request, $id_pro)#Usar de referencia a "public function retirarProductos"
+    public function prestamosProductos(Request $request, $id_pro)#Usar de referencia a "public function retirarProductos"
     {
         $validatedData = $request->validate([
             

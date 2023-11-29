@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\Marca;
+use App\Models\Modelo;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categorias = Categoria::withCount('productos')->get();
+        $marcas = Marca::withCount('productos')->get();
+        $stockProductos = Producto::where('cantidad_pro', '<=', 3)->get();
+
+        return view('home', compact('categorias','marcas','stockProductos'));
     }
 }

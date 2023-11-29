@@ -67,7 +67,7 @@ class ProductoController extends Controller
                 'descripcion_pro' => 'required',
                 'cantidad_pro' => 'required|numeric|gt:0',
                 'categorias_id_cat' => 'required',
-                'marcas_id_mar' => 'required',
+                'marcas_id_mar' => 'required', 
                 'modelos_id_mod' => 'required',
                 new UniqueProductAttributes([
                     'categorias_id_cat' => $request->input('categorias_id_cat'),

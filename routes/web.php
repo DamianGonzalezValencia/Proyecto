@@ -23,6 +23,19 @@ Route::patch('productos/{id_pro}/aumentar-stock', [StockController::class, 'aña
 Route::get('productos/{id_pro}/disminuir-stock', [StockController::class, 'disminuirStock'])->name('productos.disminuirStock')->middleware('auth');
 Route::patch('productos/{id_pro}/disminuir-stock', [StockController::class, 'retirarProductos'])->name('productos.retirarProductos')->middleware('auth');
 
-Route::delete('productos/{id_pro}/disminuir-stock(', [StockController::class, 'retirarProductos'])->name('productos.eliminar')->middleware('auth');
+Route::get('productos/{id_pro}/prestamos-stock', [StockController::class, 'prestamosShow'])->name('productos.prestamosShow')->middleware('auth');
+Route::patch('productos/{id_pro}/prestamos-stock', [StockController::class, 'prestamosProductos'])->name('productos.prestamosProductos')->middleware('auth');
+#---------------------------------------------------------------------------------------------------
+
+//Route::patch('productos/{id_pro}/generarPrestamo', [StockControlador::class, 'prestamosProductos'])->name('productos.prestamosProductos')->middleware('auth');
+
+
+
+
+
+
+Route::delete('productos/{id_pro}/(', [StockController::class, 'retirarProductos'])->name('productos.eliminar')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
+#NO PUEDEN HABER 2 FUNCIONES ULITIZANDO EL MISMO MÉTODO EN LA MISMA VISTA

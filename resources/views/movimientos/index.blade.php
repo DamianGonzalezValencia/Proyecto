@@ -52,7 +52,7 @@
 
                                             <td>
                                                 <form>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('movimientos.show', $paginacion->id_mov)}}"><i class="fa fa-fw fa-eye"></i> {{ __('VER DETALLES') }}</a>
+                                                <a class="btn btn-sm btn-primary" style="width:60px; height:30px; margin-right:30px; padding-top:7px" href="{{ route('movimientos.show', $paginacion->id_mov)}}"><i class="bi bi-eye"></i></a>
                                                     @csrf
                                                 </form>
                                             </td>
