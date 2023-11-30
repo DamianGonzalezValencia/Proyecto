@@ -66,6 +66,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('REGISTRARSE') }}
                                 </button>
+                                <a href="{{ url('/') }}" class="btn btn-sm btn-primary" style="width:45px; height:100%; margin-left:5%;">
+                                        <i class="bi bi-arrow-left-circle-fill" style="font-size:24px; position: absolute: center; "></i>
+                                    </a>
                             </div>
                         </div>
                     </form>

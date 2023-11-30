@@ -1,17 +1,15 @@
 
 -------------------- MEJORAS ---------------------
-
+- carga masiva desde excel.
 
 ----------- RELACION ENTRE PRODUCTOS Y RETIROS ----------
 
 
 ------------------ FALLOS PENDIENTES --------------------
-
+- hacer sitio responsive
 
 -------------- OTROS REQUERIMIENTOS --------------------
-1 mostrar en casilla de informaciones stocks mas bajos
-2 mostrar cantidad de productos por categoria
-3 mostrar cantidad de productos por marca
+
 
 -------------- PENDIENTES DE DIA ANTERIOR --------------------
 
@@ -24,11 +22,9 @@
 
 
 -------------- FUNCIONALIDADES A INCORPORAR --------------------
-----------*carga masiva desde excel.------
--agregar en vista home, "stocks mas bajos" (cantidades menores o igual a 3)
+
+
 -select dinamico de acuerdo a categoria seleccionada
-- en vista movimientos index, dejar solo el nombre actual, y en ver detalles colocar ambos
-- el nombre actual no me lo trae
 - alert en retirar al ingresar valor mas grande que el disponible y en prestamos también
 - alert de confirmacion para ingresos y retiros mayores a 10
 - hacer sitio responsive

@@ -171,7 +171,7 @@ class ProductoController extends Controller
         $movimiento->tipo_mov = 'MODIFICACION';
         $movimiento->cantidad_mov = $productos-> cantidad_pro;
         $movimiento->fecha_mov = $fechaActual;
-        $movimiento->nombre_mov = "Nombre Anterior: {$nombre_anterior}, Nombre Actual: {$productos-> nombre_por}";
+        $movimiento->nombre_mov = "Nombre Anterior: {$nombre_anterior}, Nombre Actual: {$productos-> nombre_pro}";
         $movimiento->users_id = auth()->user()->id;
         $movimiento->descripcion_mov = "Descripcion Anterior: {$descripcion_anterior}, Descripcion Actual: {$productos->descripcion_pro}";
                     

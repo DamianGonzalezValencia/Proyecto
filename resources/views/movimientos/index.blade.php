@@ -11,7 +11,6 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
                                 {{ __('HISTORIAL DE RETIROS, INGRESOS Y CAMBIOS') }}
                             </span>
@@ -29,30 +28,30 @@
                                 <thead class="thead">
                                     <tr>
                                         <th style="width:3%;">N°</th>
-                                        
-										<th style="width:11%; text-align:center">Id Mov.</th>
-										<th style="width:14%">Tipo </th>
+                                        <th style="width:11%; text-align:center">Id Mov.</th>
+                                        <th style="width:14%">Tipo </th>
                                         <th style="width:11%; text-align:center">Cantidad</th>
                                         <th style="width:11%">Fecha</th>
                                         <th>Producto</th>
                                         <th>Usuario</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($movimientos as $paginacion)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td style="text-align:center">{{ $paginacion->id_mov }}</td>
-											<td style="width:14%">{{ $paginacion->tipo_mov }}</td>
+                                            <td style="text-align:center">{{ $paginacion->id_mov }}</td>
+                                            <td style="width:14%">{{ $paginacion->tipo_mov }}</td>
                                             <td style="text-align:center; width:11%" >{{ $paginacion->cantidad_mov }}</td>
-                                            <td>{{ $paginacion->fecha_mov }}</td><!-- PUEDE QUE HAYA QUE SOLO QUITAR LA LETRA "S" -->
+                                            <td>{{ $paginacion->fecha_mov }}</td>
                                             <td>{{ $paginacion->nombre_mov }}</td>
                                             <td>{{ $paginacion->user->name }}</td>
-
                                             <td>
                                                 <form>
-                                                <a class="btn btn-sm btn-primary" style="width:60px; height:30px; margin-right:30px; padding-top:7px" href="{{ route('movimientos.show', $paginacion->id_mov)}}"><i class="bi bi-eye"></i></a>
+                                                    <a class="btn btn-sm btn-primary" href="{{ route('movimientos.show', $paginacion->id_mov)}}" style="min-width: 60px; padding-top: 7px;">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
                                                     @csrf
                                                 </form>
                                             </td>

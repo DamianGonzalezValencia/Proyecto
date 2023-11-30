@@ -56,7 +56,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('INGRESAR') }}
                                 </button>
-
+                                    <a href="{{ url('/') }}" class="btn btn-sm btn-primary" style="width:10%; height:100%; margin-left:5%;">
+                                        <i class="bi bi-arrow-left-circle-fill" style="font-size:24px; position: absolute: center; "></i>
+                                    </a>
                                 @if (Route::has('password.request'))
                                     <!--<a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Te olvidaste la contraseña?') }}
