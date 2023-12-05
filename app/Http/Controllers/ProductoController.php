@@ -27,26 +27,9 @@ class ProductoController extends Controller
         return view('productos.index', compact('productos'))
             ->with('i', ($productos->currentPage() - 1) * $productos->perPage());
     } else {
-        return redirect()->back()->with('error', 'No se encontraron productos');
+        return view('productos.index', compact('productos'))
+        ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
-        //$productos = Producto::orderBy('created_at', 'desc')->paginate(20);
-
-        //if ($productos) {
-            //return view('productos.index', compact('productos'))
-                //->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-        //} else {
-            //return redirect()->back()->with('error', 'Error al obtener los productos');
-        //}
-
-
-
-        //$productos = Producto::query()
-        //    ->with(['productos'])
-        //    ->when(request('search'), function ($query){
-        //        return $query->where('nombre_pro', 'like', '%'. request('search') . '%');
-        //    })
-        //    ->paginate(5);
-        //return view('productos.index', compact('productos'));
 }
 
     

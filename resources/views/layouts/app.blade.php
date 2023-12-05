@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/css/estilos.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="sweetalert2.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
         .logito{
@@ -66,23 +67,7 @@
                     <!-- Left Side Of Navbar -->
 
                     @if (Auth::check())
-                    <!--<ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categorias.index') }}">{{ __('CATEGORIAS') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('marcas.index') }}">{{ __('MARCAS') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.index') }}">{{ __('PRODUCTOS') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('movimientos.index') }}">{{ __('MOVIMIENTOS') }}</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="{{ route('modelos.index') }}">{{ __('MODELOS') }}</a>
-                        </li>
-                    </ul>-->
+   
                     @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto" style="">
