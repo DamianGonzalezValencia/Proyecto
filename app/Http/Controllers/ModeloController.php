@@ -45,7 +45,7 @@ class ModeloController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Modelo $id_mod)
+    public function show($id_mod) #Acá estaba el error (Hay que quitar el MODELOS)
     {
         $modelos = Modelo::find($id_mod);
 
