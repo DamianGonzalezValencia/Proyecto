@@ -39,9 +39,20 @@
     Github incorporates a preferred code editor
 [![github](public/images/github.png)](https://github.com/)
 
-## Instrucciones para poner en marcha el proyecto
-## **Conexion a la base de datos**
-***1- Dirijase a la carpeta dentro de su proyecto y busque el archivo de configuracion ".env" , una vez dentro ingrese el NOMBRE DE LA BASE DE DATOS A UTILIZAR, NOMBRE DE USUARIO y por último la CONTRASEÑA DE INGRESO A LA BASE DE DATOS. Encontrará una estructura como la siguiente:*** 
+## Instalación de dependencias y herramientas a utilizar
+*Abra una terminal dentro de su editor de código estando dentro de la carpeta raíz de su proyecto y ejecute uno por uno los siguientes comandos:*
+
+Instalacíon del paquete de Nodejs
+
+    npm install node
+
+Instalacion del paquete de Composer
+
+    composer install
+
+
+## Conexion a la base de datos
+*Dirijase a la carpeta dentro de su proyecto y busque el archivo de configuracion ".env" , una vez dentro ingrese el NOMBRE DE LA BASE DE DATOS A UTILIZAR, NOMBRE DE USUARIO y por último la CONTRASEÑA DE INGRESO A LA BASE DE DATOS. Encontrará una estructura como la siguiente:*
 
     APP_NAME=Laravel
     APP_ENV=local
@@ -68,4 +79,6 @@
     SESSION_LIFETIME=10
     ......
 
-    
+*Una vez tenga creada su base de datos y el archivo .env listo ejecute el siguiente comando para hacer las migraciones de tablas a su base de datos:*
+
+    php artisan: migrate
