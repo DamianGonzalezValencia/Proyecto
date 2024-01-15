@@ -39,3 +39,33 @@
     Github incorporates a preferred code editor
 [![github](public/images/github.png)](https://github.com/)
 
+## Instrucciones para poner en marcha el proyecto
+## **Conexion a la base de datos**
+***1- Dirijase a la carpeta dentro de su proyecto y busque el archivo de configuracion ".env" , una vez dentro ingrese el NOMBRE DE LA BASE DE DATOS A UTILIZAR, NOMBRE DE USUARIO y por último la CONTRASEÑA DE INGRESO A LA BASE DE DATOS. Encontrará una estructura como la siguiente:*** 
+
+    APP_NAME=Laravel
+    APP_ENV=local
+    APP_KEY=base64:ALebxZ+m4T4EkBCNe5ebTi/3PJe9xPXlEBAJt3G89k0=
+    APP_DEBUG=true
+    APP_URL=http://localhost
+
+    LOG_CHANNEL=stack
+    LOG_DEPRECATIONS_CHANNEL=null
+    LOG_LEVEL=debug
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE= -------->NOMBRE DE LA BASE DE DATOS<-----
+    DB_USERNAME= ----------->NOMBRE DE USUARIO<-----
+    DB_PASSWORD= ------>CONTRASEÑA DE LA BASE DE DATOS<-----
+
+    BROADCAST_DRIVER=log
+    CACHE_DRIVER=file
+    FILESYSTEM_DISK=local
+    QUEUE_CONNECTION=sync
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=10
+    ......
+
+    
